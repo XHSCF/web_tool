@@ -23,7 +23,7 @@
 
     <style>
         :root {
-            --ios-bg: #f5f5f7;
+            --ios-bg: #E4EEF4;
             --ios-card: rgba(255,255,255,.82);
             --ios-card-dark: rgba(30,30,32,.78);
             --ios-text: #1d1d1f;
@@ -39,6 +39,11 @@
             background: var(--ios-bg) !important;
             color: var(--ios-text);
         }
+        html, body {
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
 
         body.io-black-mode,
         body.night {
@@ -425,6 +430,50 @@
                 height: 42px;
                 min-width: 42px;
             }
+
+            /* 手机端性能优化 */
+            #search-bg::before,
+            .url-card .card,
+            .friendlink.card,
+            .footer-inner,
+            .site-search-input,
+            .site-search-empty,
+            #footer-tools .btn {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            #search-bg::before {
+                background: rgba(255, 255, 255, .58) !important;
+            }
+
+            .url-card .card,
+            .friendlink.card,
+            .footer-inner,
+            .site-search-empty,
+            #footer-tools .btn {
+                box-shadow: 0 4px 12px rgba(15, 23, 42, .06) !important;
+            }
+
+            .site-search-input {
+                box-shadow: 0 4px 12px rgba(15, 23, 42, .05) !important;
+                background: rgba(255,255,255,.94) !important;
+            }
+
+            .url-card .card:hover,
+            .friendlink a:hover,
+            .togo:hover {
+                transform: none !important;
+            }
+
+            .site-search-highlight {
+                box-shadow: 0 0 0 3px rgba(0,122,255,.12), 0 8px 16px rgba(0,122,255,.08) !important;
+            }
+
+            .weather,
+            #hitokoto {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -559,34 +608,7 @@
                                 </li>
                             </ul>
 
-                            <div class="rounded-circle weather">
-                                <div id="he-plugin-simple" style="display: contents;"></div>
-                                <script>
-                                    WIDGET = {
-                                        CONFIG: {
-                                            "modules": "01234",
-                                            "background": 5,
-                                            "tmpColor": "E4C600",
-                                            "tmpSize": 14,
-                                            "cityColor": "E4C600",
-                                            "citySize": 14,
-                                            "aqiColor": "#E4C600",
-                                            "aqiSize": 14,
-                                            "weatherIconSize": 24,
-                                            "alertIconSize": 18,
-                                            "padding": "10px 10px 10px 10px",
-                                            "shadow": "1",
-                                            "language": "auto",
-                                            "borderRadius": 5,
-                                            "fixed": "false",
-                                            "vertical": "middle",
-                                            "horizontal": "left",
-                                            "key": "085791e805a24491b43b06cf58ab31e7"
-                                        }
-                                    };
-                                </script>
-                                <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
-                            </div>
+                            
                         </div>
 
                         <ul class="nav navbar-menu text-xs order-1 order-md-2">
@@ -1068,6 +1090,29 @@
 <script src="./assets/js/clipboard.min-5.6.2.js"></script>
 <script src="./assets/js/tooltip-extend.js"></script>
 
+
+<script>
+function isMobileView() {
+    return window.innerWidth <= 768;
+}
+
+function scrollToSection(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - 90;
+    if (isMobileView()) {
+        window.scrollTo(0, top);
+    } else {
+        $("html, body").stop().animate({
+            scrollTop: top
+        }, {
+            duration: 380,
+            easing: "swing"
+        });
+    }
+}
+</script>
+
 <script>
 var theme = {
     "ajaxurl": "",
@@ -1113,12 +1158,7 @@ $(document).ready(function () {
         if ($('a.smooth[href="' + window.location.hash + '"]')[0]) {
             $('a.smooth[href="' + window.location.hash + '"]').click();
         } else if (window.location.hash !== '' && $(window.location.hash).length) {
-            $("html, body").animate({
-                scrollTop: $(window.location.hash).offset().top - 90
-            }, {
-                duration: 500,
-                easing: "swing"
-            });
+            scrollToSection(window.location.hash);
         }
     }, 300);
 
@@ -1128,12 +1168,7 @@ $(document).ready(function () {
         }
 
         if ($(this).attr("href").substr(0, 1) === "#" && $($(this).attr("href")).length) {
-            $("html, body").animate({
-                scrollTop: $($(this).attr("href")).offset().top - 90
-            }, {
-                duration: 500,
-                easing: "swing"
-            });
+            scrollToSection($(this).attr("href"));
         }
 
         if (!$(this).hasClass('change-href')) {
@@ -1208,7 +1243,7 @@ function updateRuntime() {
         runtime.innerText = `⏱️ 已稳定运行 ${days}天 ${pad(hours)}时 ${pad(minutes)}分 ${pad(seconds)}秒`;
     }
 }
-setInterval(updateRuntime, 1000);
+setInterval(updateRuntime, window.innerWidth <= 768 ? 10000 : 1000);
 updateRuntime();
 </script>
 
