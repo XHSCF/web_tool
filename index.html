@@ -2324,7 +2324,31 @@ function switchNightMode(){
     }
 }
 </script>
+<div id="runtime"></div>
+
+	<script>
+function updateRuntime() {
+
+    // ⭐ 2026-3-15
+    const startTime = new Date("2026-03-01 00:00:00");
+
+    const now = new Date(); // 当前时间
+    const diff = now - startTime; // 相差时间（毫秒）
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
+    const minutes = Math.floor(diff / (1000 * 60) % 60);
+    const seconds = Math.floor(diff / 1000 % 60);
+
+    document.getElementById("runtime").innerText =
+        `已稳定运行 ${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+}
+
+// 每秒执行一次
+setInterval(updateRuntime, 1000);
+
+// 页面一打开就先执行一次
+updateRuntime();
+</script>
 </body>
 </html>
-
-
