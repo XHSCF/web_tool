@@ -2042,6 +2042,8 @@
             </div>
             <div class="footer-inner">
                 <div class="footer-text">本站内容源自互联网，如有内容侵犯了你的权益，请联系删除相关内容，联系邮箱：lcy669669@gmail.com <br/>© 2026 By <a href="https://github.com/xhscf/">Web_tool</a> | <a href="http://beian.miit.gov.cn/">京ICP备2023018588号</a>
+					
+					<div id="runtime" style="text-align:center; margin-top:15px;"></div>
 					<div id="runtime" style="text-align:center; font-size:14px; color:#39C5BB;"></div>
 
 	<script>
@@ -2350,32 +2352,6 @@ function switchNightMode(){
         $(".mode-ico").addClass("icon-night");
     }
 }
-</script>
-<div id="runtime" style="text-align:center; font-size:14px; color:#39C5BB;"></div>
-
-	<script>
-function updateRuntime() {
-
-    // ⭐ 2026-3-15
-    const startTime = new Date("2026-03-15 00:00:00");
-
-    const now = new Date(); // 当前时间
-    const diff = now - startTime; // 相差时间（毫秒）
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
-    const minutes = Math.floor(diff / (1000 * 60) % 60);
-    const seconds = Math.floor(diff / 1000 % 60);
-
-    document.getElementById("runtime").innerText =
-        `已稳定运行 ${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
-}
-
-// 每秒执行一次
-setInterval(updateRuntime, 1000);
-
-// 页面一打开就先执行一次
-updateRuntime();
 </script>
 </body>
 </html>
