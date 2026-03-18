@@ -22,43 +22,409 @@
     <script src="./assets/js/jquery.min-3.2.1.js"></script>
 
     <style>
-        .site-search-box {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 26px 16px 40px;
+        :root {
+            --ios-bg: #f5f5f7;
+            --ios-card: rgba(255,255,255,.82);
+            --ios-card-dark: rgba(30,30,32,.78);
+            --ios-text: #1d1d1f;
+            --ios-subtext: #6e6e73;
+            --ios-blue: #007aff;
+            --ios-line: rgba(0,0,0,.06);
+            --ios-shadow: 0 10px 30px rgba(15,23,42,.06);
+            --ios-shadow-hover: 0 16px 40px rgba(15,23,42,.10);
         }
+
+        body,
+        body.io-grey-mode {
+            background: var(--ios-bg) !important;
+            color: var(--ios-text);
+        }
+
+        body.io-black-mode,
+        body.night {
+            background: #111214 !important;
+            color: #f5f5f7;
+        }
+
+        .page-container,
+        .main-content.grid-bg {
+            background: transparent !important;
+        }
+
+        #search-bg {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 28px !important;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #search-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.38));
+            backdrop-filter: blur(8px);
+        }
+
+        body.io-black-mode #search-bg::before,
+        body.night #search-bg::before {
+            background: linear-gradient(180deg, rgba(18,18,20,.55), rgba(18,18,20,.35));
+        }
+
+        .site-search-box {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 34px 16px 46px;
+        }
+
+        .site-search-title {
+            margin: 0 0 10px;
+            font-size: 34px;
+            line-height: 1.16;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -.02em;
+        }
+
+        .site-search-desc {
+            margin: 0 0 22px;
+            color: var(--ios-subtext);
+            font-size: 15px;
+            letter-spacing: .01em;
+        }
+
+        body.io-black-mode .site-search-title,
+        body.night .site-search-title {
+            color: #fff;
+        }
+
+        body.io-black-mode .site-search-desc,
+        body.night .site-search-desc,
+        body.io-black-mode .site-search-tip,
+        body.night .site-search-tip {
+            color: rgba(255,255,255,.72);
+        }
+
         .site-search-form {
             position: relative;
+            max-width: 760px;
+            margin: 0 auto;
         }
+
+        .site-search-form::before {
+            content: "\e65c";
+            font-family: "iconfont";
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #8e8e93;
+            z-index: 2;
+        }
+
         .site-search-input {
             width: 100%;
-            height: 58px;
-            border: 0;
+            height: 62px;
+            border: 1px solid rgba(255,255,255,.72);
             border-radius: 999px;
-            padding: 0 24px;
-            font-size: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+            padding: 0 24px 0 56px;
+            font-size: 17px;
+            color: var(--ios-text);
+            background: rgba(255,255,255,.74);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+            transition: all .22s ease;
         }
+
+        .site-search-input::placeholder {
+            color: #8e8e93;
+        }
+
+        .site-search-input:focus {
+            outline: none;
+            background: rgba(255,255,255,.95);
+            border-color: rgba(0,122,255,.28);
+            box-shadow: 0 14px 36px rgba(0,122,255,.12);
+        }
+
+        body.io-black-mode .site-search-input,
+        body.night .site-search-input {
+            color: #f5f5f7;
+            background: rgba(44,44,46,.75);
+            border-color: rgba(255,255,255,.08);
+        }
+
+        body.io-black-mode .site-search-input::placeholder,
+        body.night .site-search-input::placeholder {
+            color: rgba(255,255,255,.45);
+        }
+
+        body.io-black-mode .site-search-form::before,
+        body.night .site-search-form::before {
+            color: rgba(255,255,255,.55);
+        }
+
         .site-search-tip {
             margin-top: 12px;
-            color: rgba(255,255,255,.75);
-            font-size: 14px;
+            color: var(--ios-subtext);
+            font-size: 13px;
             text-align: center;
         }
+
         .site-search-empty {
             display: none;
-            padding: 18px 20px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,.9);
-            color: #666;
+            padding: 16px 18px;
+            margin: 0 0 22px;
+            border-radius: 18px;
+            color: var(--ios-subtext);
+            background: rgba(255,255,255,.78);
+            border: 1px solid rgba(255,255,255,.9);
+            box-shadow: var(--ios-shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
+
+        body.io-black-mode .site-search-empty,
+        body.night .site-search-empty {
+            background: rgba(32,32,34,.82);
+            border-color: rgba(255,255,255,.08);
+            color: rgba(255,255,255,.78);
+        }
+
         .site-search-empty.show {
             display: block;
         }
+
         .site-search-highlight {
-            outline: 2px solid rgba(57,197,187,.45);
+            box-shadow: 0 0 0 5px rgba(0,122,255,.14), 0 14px 36px rgba(0,122,255,.12) !important;
+        }
+
+        .content-site {
+            padding-top: 8px;
+        }
+
+        .site-section {
+            margin-bottom: 16px;
+        }
+
+        h4.text-gray {
+            margin-bottom: 18px !important;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f !important;
+            letter-spacing: -.02em;
+        }
+
+        body.io-black-mode h4.text-gray,
+        body.night h4.text-gray {
+            color: #f5f5f7 !important;
+        }
+
+        .site-tag.iconfont {
+            color: var(--ios-blue);
+        }
+
+        .url-card .url-body.default {
+            position: relative;
+        }
+
+        .url-card .card {
+            border: 1px solid rgba(255,255,255,.78) !important;
+            border-radius: 22px !important;
+            background: var(--ios-card) !important;
+            box-shadow: var(--ios-shadow) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+            overflow: hidden;
+        }
+
+        .url-card .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--ios-shadow-hover) !important;
+            border-color: rgba(0,122,255,.16) !important;
+        }
+
+        body.io-black-mode .url-card .card,
+        body.night .url-card .card {
+            background: var(--ios-card-dark) !important;
+            border-color: rgba(255,255,255,.06) !important;
+            box-shadow: 0 12px 32px rgba(0,0,0,.30) !important;
+        }
+
+        .url-card .card-body {
+            padding: 16px 18px;
+        }
+
+        .url-img {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(245,245,247,.92);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+        }
+
+        body.io-black-mode .url-img,
+        body.night .url-img {
+            background: rgba(58,58,60,.95);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+        }
+
+        .url-img img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+        }
+
+        .url-info strong {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .url-info p {
+            margin-top: 3px !important;
+            color: var(--ios-subtext) !important;
+            font-size: 12px !important;
+        }
+
+        body.io-black-mode .url-info strong,
+        body.night .url-info strong {
+            color: #f5f5f7;
+        }
+
+        body.io-black-mode .url-info p,
+        body.night .url-info p {
+            color: rgba(255,255,255,.62) !important;
+        }
+
+        .togo {
+            position: absolute;
+            right: 14px;
+            bottom: 12px;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
             border-radius: 999px;
+            background: rgba(0,122,255,.08);
+            color: var(--ios-blue) !important;
+            transition: transform .22s ease, background .22s ease;
+        }
+
+        .togo:hover {
+            transform: scale(1.06);
+            background: rgba(0,122,255,.14);
+        }
+
+        body.io-black-mode .togo,
+        body.night .togo {
+            background: rgba(10,132,255,.14);
+            color: #58a6ff !important;
+        }
+
+        .friendlink.card {
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,.78);
+            background: rgba(255,255,255,.82);
+            box-shadow: var(--ios-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        body.io-black-mode .friendlink.card,
+        body.night .friendlink.card {
+            background: rgba(30,30,32,.78);
+            border-color: rgba(255,255,255,.06);
+        }
+
+        .friendlink .card-body {
+            padding: 18px 20px;
+        }
+
+        .friendlink a {
+            display: inline-block;
+            margin: 6px 8px 6px 0;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(0,122,255,.08);
+            color: var(--ios-blue);
+            transition: background .22s ease, transform .22s ease;
+        }
+
+        .friendlink a:hover {
+            background: rgba(0,122,255,.14);
+            transform: translateY(-1px);
+        }
+
+        .main-footer {
+            margin-top: 26px;
+        }
+
+        .footer-inner {
+            border-radius: 24px 24px 0 0;
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 1px solid rgba(255,255,255,.78);
+        }
+
+        body.io-black-mode .footer-inner,
+        body.night .footer-inner {
+            background: rgba(24,24,26,.78);
+            border-top-color: rgba(255,255,255,.06);
+        }
+
+        #footer-tools .btn {
+            border-radius: 999px;
+            background: rgba(255,255,255,.78);
+            box-shadow: 0 6px 18px rgba(0,0,0,.08);
+            backdrop-filter: blur(12px);
+        }
+
+        body.io-black-mode #footer-tools .btn,
+        body.night #footer-tools .btn {
+            background: rgba(40,40,42,.82);
+            color: #f5f5f7;
+        }
+
+        #runtime {
+            color: var(--ios-blue) !important;
+            text-shadow: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .site-search-box {
+                padding: 26px 14px 34px;
+            }
+            .site-search-title {
+                font-size: 26px;
+            }
+            .site-search-desc {
+                font-size: 14px;
+                margin-bottom: 18px;
+            }
+            .site-search-input {
+                height: 56px;
+                font-size: 16px;
+            }
+            h4.text-gray {
+                font-size: 22px;
+            }
+            .url-card .card-body {
+                padding: 14px 15px;
+            }
+            .url-img {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+            }
         }
     </style>
 </head>
@@ -264,6 +630,8 @@
             <div class="s-search">
                 <div id="search-main" class="s-search mx-auto">
                     <div class="site-search-box text-center">
+                        <h1 class="site-search-title">发现你的精选资源</h1>
+                        <p class="site-search-desc">保留原有卡片内容，直接搜索本站的工具、影视、动漫、IOS 与常用网站。</p>
                         <form class="site-search-form" onsubmit="return false;">
                             <input
                                 type="text"
@@ -783,23 +1151,19 @@ $(document).ready(function () {
 
 <script>
 (function () {
-    if (document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
-        if (new Date().getHours() > 22 || new Date().getHours() < 6) {
-            document.body.classList.remove('io-black-mode');
-            document.body.classList.add('io-grey-mode');
-            document.cookie = "night=1;path=/";
-        } else {
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/";
-        }
+    const cookieNight = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    const autoNight = (new Date().getHours() > 22 || new Date().getHours() < 6) ? '1' : '0';
+    const night = cookieNight === '' ? autoNight : cookieNight;
+
+    document.body.classList.remove('night', 'io-grey-mode', 'io-black-mode');
+
+    if (night === '1') {
+        document.body.classList.add('night', 'io-black-mode');
     } else {
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-        if (night === '0') {
-            document.body.classList.remove('night');
-        } else if (night === '1') {
-            document.body.classList.add('night');
-        }
+        document.body.classList.add('io-grey-mode');
     }
+
+    document.cookie = "night=" + night + ";path=/";
 })();
 
 $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
