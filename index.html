@@ -71,12 +71,12 @@
             <div class="sidebar-logo border-bottom border-color">
                 <div class="logo overflow-hidden">
                     <a href="" class="logo-expanded">
-                        <img src="./assets/images/微信.png" height="40" class="logo-light" alt="手记">
-                        <img src="./assets/images/微信.png" height="40" class="logo-dark d-none" alt="手记">
+                        <img src="./assets/images/.png" height="40" class="logo-light" alt="手记">
+                        <img src="./assets/images/.png" height="40" class="logo-dark d-none" alt="手记">
                     </a>
                     <a href="" class="logo-collapsed">
-                        <img src="./assets/images/微信.png" height="40" class="logo-light" alt="手记">
-                        <img src="./assets/images/微信.png" height="40" class="logo-dark d-none" alt="手记">
+                        <img src="./assets/images/.png" height="40" class="logo-light" alt="手记">
+                        <img src="./assets/images/.png" height="40" class="logo-dark d-none" alt="手记">
                     </a>
                 </div>
             </div>
@@ -802,19 +802,19 @@ $(document).ready(function () {
     }
 })();
 
-$("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+$("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
 
 function switchNightMode() {
     var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
     if (night === '0') {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+        $("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
         document.body.classList.remove('io-grey-mode');
         document.body.classList.add('io-black-mode');
         document.cookie = "night=1;path=/";
         $(".switch-dark-mode").attr("data-original-title", "日间模式");
         $(".mode-ico").removeClass("icon-night").addClass("icon-light");
     } else {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+        $("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
         document.body.classList.remove('io-black-mode');
         document.body.classList.add('io-grey-mode');
         document.cookie = "night=0;path=/";
