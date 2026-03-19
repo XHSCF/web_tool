@@ -1,1140 +1,1206 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta name="generator" content="Hugo 0.121.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#f9f9f9">
-    <title>SAKURA手记 - 收藏夹</title>
-    <link rel="shortcut icon" href="./assets/images/favicon.png">
-    <meta name="keywords" content="在线工具网">
-    <meta name="description" content="在线网址导航, 各类开发工具、绘图绘画工具、md5、在线ps、base64、在线播放器、房贷计算器等">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e4eef4">
+<title>SAKURA手记 - 收藏夹</title>
+<link rel="shortcut icon" href="./assets/images/favicon.png">
+<link rel="stylesheet" href="./assets/css/iconfont-3.03029.1.css">
+<link rel="stylesheet" href="./assets/fontawesome-5.15.4/css/all.min.css">
+<style>
+:root {
+  --sidebar-w: 272px;
+  --header-h: 72px;
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --bg: #e4eef4;
+  --bg-soft: #edf4f8;
+  --bg-panel: rgba(255,255,255,.70);
+  --bg-panel-strong: rgba(255,255,255,.82);
+  --bg-card: rgba(255,255,255,.72);
+  --text: #18222f;
+  --muted: #607080;
+  --border: rgba(119,145,171,.18);
+  --shadow-lg: 0 20px 50px rgba(83,110,140,.14);
+  --shadow-md: 0 10px 28px rgba(83,110,140,.10);
+  --shadow-sm: 0 6px 18px rgba(83,110,140,.08);
+  --accent: #6b8fb1;
+  --accent-2: #95aec4;
+  --hero-overlay: linear-gradient(135deg, rgba(40,59,80,.58), rgba(93,119,148,.24));
+  --grid-line: rgba(121, 147, 173, .10);
+  --footer-tools-bottom: 28px;
+}
+body.theme-dark {
+  --bg: #1b2532;
+  --bg-soft: #202b39;
+  --bg-panel: rgba(31,41,54,.82);
+  --bg-panel-strong: rgba(30,40,53,.90);
+  --bg-card: rgba(27,38,52,.86);
+  --text: #eef4fb;
+  --muted: #9fb0c2;
+  --border: rgba(160,183,208,.14);
+  --shadow-lg: 0 24px 54px rgba(0,0,0,.30);
+  --shadow-md: 0 10px 28px rgba(0,0,0,.24);
+  --shadow-sm: 0 6px 18px rgba(0,0,0,.20);
+  --accent: #9fc0de;
+  --accent-2: #7d99b7;
+  --hero-overlay: linear-gradient(135deg, rgba(9,14,22,.62), rgba(39,56,76,.42));
+  --grid-line: rgba(166, 193, 219, .08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg), var(--bg-soft));
+  background-size: 28px 28px, 28px 28px, auto;
+  transition: background .28s ease, color .28s ease;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button, input { font: inherit; }
 
-    <link rel="stylesheet" href="./assets/css/block-library.min-5.6.2.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/css/iconfont-3.03029.1.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min-4.3.1.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/css/fancybox.min-3.5.7.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/css/style-3.03029.1.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/css/custom-style.css" type="text/css" media="all">
-    <link rel="stylesheet" href="./assets/fontawesome-5.15.4/css/all.min.css" type="text/css">
+.app-shell {
+  min-height: 100vh;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  background: var(--bg-panel-strong);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  z-index: 1100;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 74px;
+  padding: 14px 14px 16px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+}
+.brand-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,.65);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+.brand-title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.04;
+}
+.brand-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.sidebar-scroll {
+  margin-top: 18px;
+  padding-right: 4px;
+  overflow: auto;
+}
+.sidebar-scroll::-webkit-scrollbar { width: 6px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(128,146,166,.24); border-radius: 99px; }
+.nav-group-title {
+  margin: 18px 12px 8px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+  margin: 4px 0;
+  padding: 0 14px;
+  border-radius: 16px;
+  color: var(--text);
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.nav-link-item i { width: 18px; text-align: center; color: var(--accent); }
+.nav-link-item:hover {
+  transform: translateX(2px);
+  background: rgba(255,255,255,.22);
+}
+.nav-link-item.is-active {
+  background: linear-gradient(135deg, rgba(132,161,189,.24), rgba(255,255,255,.08));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
+}
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.sidebar-meta {
+  margin: 12px 12px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.sidebar-meta strong { color: var(--text); font-weight: 700; }
 
-    <script src="./assets/js/jquery.min-3.2.1.js"></script>
-
-    <style>
-        .site-search-box {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 26px 16px 40px;
-        }
-        .site-search-form {
-            position: relative;
-        }
-        .site-search-input {
-            width: 100%;
-            height: 58px;
-            border: 0;
-            border-radius: 999px;
-            padding: 0 24px;
-            font-size: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.12);
-        }
-        .site-search-tip {
-            margin-top: 12px;
-            color: rgba(255,255,255,.75);
-            font-size: 14px;
-            text-align: center;
-        }
-        .site-search-empty {
-            display: none;
-            padding: 18px 20px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,.9);
-            color: #666;
-        }
-        .site-search-empty.show {
-            display: block;
-        }
-        .site-search-highlight {
-            outline: 2px solid rgba(57,197,187,.45);
-            border-radius: 999px;
-        }
-    </style>
-
-    <style id="color-refresh-theme">
-        :root {
-            --bg-light: #e4eef4;
-            --bg-light-2: #f4f8fb;
-            --panel-light: rgba(255,255,255,.72);
-            --panel-light-strong: rgba(255,255,255,.88);
-            --line-light: rgba(135,161,186,.18);
-            --text-light: #243447;
-            --muted-light: #6f8096;
-            --accent-light: #7ba4ff;
-
-            --bg-dark: #182232;
-            --bg-dark-2: #111927;
-            --panel-dark: rgba(24,34,50,.82);
-            --panel-dark-strong: rgba(19,28,42,.92);
-            --line-dark: rgba(148,163,184,.10);
-            --text-dark: #e9f0fb;
-            --muted-dark: #98a7bb;
-            --accent-dark: #8fb2ff;
-        }
-
-        body.io-grey-mode,
-        body.io-black-mode {
-            background:
-                radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 32%),
-                linear-gradient(180deg, var(--bg-light), var(--bg-light-2));
-            color: var(--text-light);
-        }
-
-        body.io-black-mode {
-            background:
-                radial-gradient(circle at top left, rgba(123,164,255,.12), transparent 26%),
-                linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
-            color: var(--text-dark);
-        }
-
-        .main-content.grid-bg {
-            background-color: transparent !important;
-            background-image:
-                linear-gradient(rgba(120, 144, 168, .10) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(120, 144, 168, .10) 1px, transparent 1px) !important;
-            background-size: 24px 24px !important;
-            background-position: center center !important;
-        }
-
-        body.io-black-mode .main-content.grid-bg {
-            background-image:
-                linear-gradient(rgba(148, 163, 184, .08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148, 163, 184, .08) 1px, transparent 1px) !important;
-        }
-
-        #sidebar,
-        .sidebar-nav-inner,
-        .modal-dialog.sidebar-nav-inner,
-        .sidebar-logo,
-        .border-top.py-2.border-color,
-        .friendlink.card,
-        .url-body > .card.no-c,
-        .site-search-empty,
-        #footer-tools .btn {
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        #sidebar {
-            background: var(--panel-light) !important;
-            border-right: 1px solid var(--line-light);
-            box-shadow: 0 10px 34px rgba(41, 60, 84, .06);
-        }
-
-        body.io-black-mode #sidebar {
-            background: var(--panel-dark) !important;
-            border-right-color: var(--line-dark);
-            box-shadow: 0 18px 38px rgba(0, 0, 0, .26);
-        }
-
-        .sidebar-logo,
-        .border-top.py-2.border-color {
-            background: transparent !important;
-            border-color: var(--line-light) !important;
-        }
-
-        body.io-black-mode .sidebar-logo,
-        body.io-black-mode .border-top.py-2.border-color {
-            border-color: var(--line-dark) !important;
-        }
-
-        .sidebar-menu-inner ul li > a,
-        .flex-bottom ul li > a,
-        .site-menu > li > a,
-        .footer-text,
-        .footer-text a,
-        .text-gray,
-        .url-info .text-muted,
-        .friendlink a,
-        #hitokoto a {
-            color: var(--text-light) !important;
-        }
-
-        .sidebar-menu-inner ul li ul li a,
-        .footer-text,
-        .url-info .text-muted,
-        #hitokoto a {
-            color: var(--muted-light) !important;
-        }
-
-        body.io-black-mode .sidebar-menu-inner ul li > a,
-        body.io-black-mode .flex-bottom ul li > a,
-        body.io-black-mode .site-menu > li > a,
-        body.io-black-mode .text-gray,
-        body.io-black-mode .friendlink a,
-        body.io-black-mode .footer-text,
-        body.io-black-mode .footer-text a {
-            color: var(--text-dark) !important;
-        }
-
-        body.io-black-mode .sidebar-menu-inner ul li ul li a,
-        body.io-black-mode .url-info .text-muted,
-        body.io-black-mode #hitokoto a,
-        body.io-black-mode .footer-text {
-            color: var(--muted-dark) !important;
-        }
-
-        .sidebar-item > a:hover,
-        .sidebar-item > a:focus,
-        .sidebar-menu-inner ul li ul li a:hover,
-        .sidebar-menu-inner ul li ul li a:focus {
-            background: rgba(123,164,255,.10) !important;
-            color: var(--accent-light) !important;
-        }
-
-        body.io-black-mode .sidebar-item > a:hover,
-        body.io-black-mode .sidebar-item > a:focus,
-        body.io-black-mode .sidebar-menu-inner ul li ul li a:hover,
-        body.io-black-mode .sidebar-menu-inner ul li ul li a:focus {
-            background: rgba(143,178,255,.12) !important;
-            color: var(--accent-dark) !important;
-        }
-
-        #search-bg {
-            position: relative;
-            overflow: hidden;
-            background-color: #7087a8 !important;
-            background-position: center center !important;
-            background-size: cover !important;
-            background-blend-mode: soft-light;
-        }
-
-        #search-bg::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(14,27,53,.50), rgba(84,116,158,.18));
-            pointer-events: none;
-        }
-
-        body.io-black-mode #search-bg::before {
-            background: linear-gradient(135deg, rgba(10,16,27,.58), rgba(22,34,55,.30));
-        }
-
-        .site-search-input {
-            background: rgba(255,255,255,.92) !important;
-            color: var(--text-light) !important;
-            box-shadow: 0 14px 34px rgba(24, 39, 58, .12) !important;
-        }
-
-        .site-search-input::placeholder {
-            color: rgba(80, 95, 114, .72);
-        }
-
-        body.io-black-mode .site-search-input {
-            background: rgba(18,27,42,.90) !important;
-            color: var(--text-dark) !important;
-            box-shadow: 0 16px 38px rgba(0,0,0,.30) !important;
-        }
-
-        body.io-black-mode .site-search-input::placeholder {
-            color: rgba(196, 207, 224, .54);
-        }
-
-        .url-body > .card.no-c,
-        .friendlink.card,
-        .site-search-empty {
-            background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.76)) !important;
-            border: 1px solid rgba(255,255,255,.56) !important;
-            box-shadow: 0 12px 30px rgba(37, 53, 76, .08) !important;
-        }
-
-        body.io-black-mode .url-body > .card.no-c,
-        body.io-black-mode .friendlink.card,
-        body.io-black-mode .site-search-empty {
-            background: linear-gradient(180deg, rgba(24,34,50,.94), rgba(19,28,42,.90)) !important;
-            border-color: rgba(148,163,184,.08) !important;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, .28) !important;
-        }
-
-        .togo,
-        #footer-tools .btn {
-            background: rgba(255,255,255,.84) !important;
-            border: 1px solid rgba(135,161,186,.16) !important;
-            box-shadow: 0 10px 24px rgba(37,53,76,.10) !important;
-            color: var(--text-light) !important;
-        }
-
-        body.io-black-mode .togo,
-        body.io-black-mode #footer-tools .btn {
-            background: rgba(19,28,42,.92) !important;
-            border-color: rgba(148,163,184,.08) !important;
-            color: var(--text-dark) !important;
-            box-shadow: 0 16px 34px rgba(0,0,0,.28) !important;
-        }
-
-        .main-footer {
-            background: transparent !important;
-        }
-
-        @media (max-width: 767.98px) {
-            #sidebar {
-                background: rgba(244,248,251,.94) !important;
-            }
-            body.io-black-mode #sidebar {
-                background: rgba(17,25,39,.96) !important;
-            }
-        }
-    </style>
-
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+.mobile-topbar {
+  display: none;
+}
+.hero {
+  position: relative;
+  min-height: 340px;
+  padding: 36px 42px 42px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    var(--hero-overlay),
+    url('./assets/images/bg-dna.jpg') center/cover no-repeat;
+  transform: scale(1.02);
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+.hero h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+  color: #fff;
+}
+.hero p {
+  margin: 0 0 22px;
+  max-width: 720px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.82);
+}
+.search-wrap {
+  width: min(760px, 100%);
+}
+.search-shell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 68px;
+  padding: 0 20px 0 22px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.84);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,.5);
+  backdrop-filter: blur(14px);
+}
+.search-shell i { color: #7e8e9f; font-size: 20px; }
+.search-shell input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: #1a2430;
+  outline: none;
+  font-size: 18px;
+}
+.search-tip {
+  margin-top: 14px;
+  padding-left: 12px;
+  color: rgba(255,255,255,.78);
+  font-size: 14px;
+}
+.content {
+  padding: 28px 32px 120px;
+}
+.search-empty {
+  display: none;
+  margin: 0 auto 20px;
+  max-width: 1200px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: var(--bg-panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--muted);
+}
+.search-empty.show { display: block; }
+.content-inner {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+}
+.site-section {
+  margin-bottom: 34px;
+}
+.section-head {
+  margin-bottom: 16px;
+}
+.site-section h4,
+.section-head h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+.site-section h4 .site-tag,
+.section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(126,152,178,.12);
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.site-section .d-flex.flex-fill {
+  display: block !important;
+}
+.site-section .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 0 !important;
+}
+.url-card {
+  width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+.url-body.default {
+  position: relative;
+  height: 100%;
+}
+.card.no-c {
+  position: relative;
+  min-height: 100px;
+  display: block;
+  margin: 0 !important;
+  padding: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card.no-c:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(129,156,184,.26);
+}
+.card-body {
+  padding: 18px 18px 18px 18px;
+}
+.url-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px;
+}
+.url-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.68);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
+}
+.url-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.url-info strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+.url-info p {
+  margin: 0;
+  color: var(--muted) !important;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.overflowClip_1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.togo {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.44);
+  border: 1px solid rgba(255,255,255,.42);
+  color: var(--muted) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+}
+body.theme-dark .togo,
+body.theme-dark .url-img {
+  background: rgba(255,255,255,.04);
+}
+.friendlink {
+  padding: 8px !important;
+  border-radius: 26px;
+  background: var(--bg-panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.friendlink .card-body {
+  padding: 18px 20px !important;
+}
+.friendlink a {
+  display: inline-flex;
+  margin: 8px 16px 8px 0;
+  color: var(--text);
+}
+.site-footer {
+  margin-top: 46px;
+  padding: 26px 22px 32px;
+  border-radius: 28px;
+  text-align: center;
+  background: var(--bg-panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.site-footer .footer-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.site-footer .footer-text a {
+  color: var(--accent);
+  font-weight: 600;
+}
+#runtime {
+  margin-top: 10px;
+  color: #69a8b6 !important;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-shadow: none !important;
+}
+.float-tools {
+  position: fixed;
+  right: 24px;
+  bottom: var(--footer-tools-bottom);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1200;
+}
+.float-btn {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-panel-strong);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  cursor: pointer;
+}
+.float-btn:hover { transform: translateY(-2px); }
+.overlay {
+  display: none;
+}
+body.drawer-open {
+  overflow: hidden;
+}
+@media (max-width: 1024px) {
+  :root { --sidebar-w: 244px; }
+  .hero { min-height: 320px; padding: 32px 24px 34px; }
+  .content { padding: 24px 18px 120px; }
+}
+@media (max-width: 767px) {
+  :root { --footer-tools-bottom: calc(env(safe-area-inset-bottom) + 18px); }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .24s ease;
+    width: min(86vw, 320px);
+  }
+  body.drawer-open .sidebar {
+    transform: translateX(0);
+  }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,16,24,.44);
+    z-index: 1090;
+  }
+  body.drawer-open .overlay {
+    display: block;
+  }
+  .main {
+    margin-left: 0;
+  }
+  .mobile-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    padding: 0 16px;
+    background: var(--bg-panel-strong);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+  }
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .mobile-brand img {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+  .mobile-brand span {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.03em;
+  }
+  .mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mobile-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.18);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero {
+    min-height: auto;
+    padding: 20px 14px 24px;
+  }
+  .hero-inner {
+    padding: 22px 16px;
+    border-radius: 28px;
+    background: rgba(12,20,30,.16);
+    backdrop-filter: blur(10px);
+  }
+  .hero-chip {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    margin: 12px 0 8px;
+  }
+  .hero p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .search-shell {
+    height: 56px;
+    padding: 0 16px;
+  }
+  .search-shell input {
+    font-size: 16px;
+  }
+  .search-tip {
+    font-size: 12px;
+    padding-left: 6px;
+  }
+  .site-section h4,
+  .section-head h2 {
+    font-size: 22px;
+  }
+  .site-section .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .card.no-c {
+    min-height: 94px;
+    border-radius: 18px;
+  }
+  .card-body {
+    padding: 14px 14px 14px 14px;
+  }
+  .url-content {
+    gap: 10px;
+  }
+  .url-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+  .url-info strong {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  .url-info p {
+    font-size: 12px;
+  }
+  .togo {
+    width: 30px;
+    height: 30px;
+    right: 10px;
+  }
+  .float-tools {
+    left: 50%;
+    right: auto;
+    bottom: calc(env(safe-area-inset-bottom) + 16px);
+    transform: translateX(-50%);
+    flex-direction: row;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: var(--bg-panel-strong);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+  .float-btn {
+    width: 46px;
+    height: 46px;
+    background: transparent;
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
+@media (max-width: 420px) {
+  .site-section .row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="./">
+      <span class="brand-logo"><img src="./assets/images/bt.png" alt="SAKURA手记"></span>
+      <span>
+        <div class="brand-title">SAKURA手记</div>
+        <div class="brand-subtitle">从零重写的导航站骨架</div>
+      </span>
+    </a>
 
-<body class="io-grey-mode">
-<div class="page-container">
-
-    <div id="sidebar" class="sticky sidebar-nav fade animate-nav" style="width: 170px;">
-        <div class="modal-dialog h-100 sidebar-nav-inner">
-            <div class="sidebar-logo border-bottom border-color">
-                <div class="logo overflow-hidden">
-                    <a href="" class="logo-expanded">
-                        <img src="./assets/images/bt8-expand-light.png" height="40" class="logo-light" alt="手记">
-                        <img src="./assets/images/bt8-expand-dark.png" height="40" class="logo-dark d-none" alt="手记">
-                    </a>
-                    <a href="" class="logo-collapsed">
-                        <img src="./assets/images/bt.png" height="40" class="logo-light" alt="手记">
-                        <img src="./assets/images/bt.png" height="40" class="logo-dark d-none" alt="手记">
-                    </a>
-                </div>
-            </div>
-
-            <div class="sidebar-menu flex-fill">
-                <div class="sidebar-scroll">
-                    <div class="sidebar-menu-inner">
-                        <ul>
-                            <li class="sidebar-item">
-                                <a href="#3e90c5117dc0fe9d71410e448d766e52" class="smooth">
-                                    <i class="far fa-star fa-lg icon-fw icon-lg mr-2"></i>
-                                    <span>资源推荐</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a href="#a4d417d7850fde0cd00e4af576621a63" class="smooth change-href" data-change="#a4d417d7850fde0cd00e4af576621a63">
-                                    <i class="fas fa-film fa-lg icon-fw icon-lg mr-2"></i>
-                                    <span>影视资源</span>
-                                    <i class="iconfont icon-arrow-r-m sidebar-more text-sm"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="#a4d417d7850fde0cd00e4af576621a63" class="smooth"><span>影视在线观看</span></a></li>
-                                    <li><a href="#e15122403d5aca361a6b63ddea292464" class="smooth"><span>动漫番剧</span></a></li>
-                                    <li><a href="#e15122403d5aca361a6b63ddea292465" class="smooth"><span>资源下载</span></a></li>
-                                </ul>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a href="#5e6e1089ffbc5d7819c0d0f1f7b31ebc" class="smooth change-href" data-change="#5e6e1089ffbc5d7819c0d0f1f7b31ebc">
-                                    <i class="far fa-folder-open fa-lg icon-fw icon-lg mr-2"></i>
-                                    <span>其它资源</span>
-                                    <i class="iconfont icon-arrow-r-m sidebar-more text-sm"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="#779477bcccdd4ecb1d852c8d4a67caca" class="smooth"><span>工具相关</span></a></li>
-                                    <li><a href="#ff65f7f9721757bf11b0b0c95f1b9446" class="smooth"><span>IOS相关</span></a></li>
-                                    <li><a href="#722d3693fc0b9344bb46ee220beac1b6" class="smooth"><span>游戏相关</span></a></li>
-                                    <li><a href="#113a0a745b4169af0f7646269c12ae66" class="smooth"><span>PPT资源</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-top py-2 border-color">
-                <div class="flex-bottom">
-                    <ul>
-                        <li class="sidebar-item">
-                            <a href="commit.html" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-file-upload icon-fw icon-lg mr-2"></i>
-                                <span>网站提交</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="#friendlink" class="smooth">
-                                <i class="fab fa-staylinked icon-fw icon-lg mr-2"></i>
-                                <span>友情链接</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a target="_blank" rel="noopener noreferrer" href="about">
-                                <i class="fa fa-info-circle icon-fw icon-lg mr-2"></i>
-                                <span>关于导航</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="sidebar-scroll">
+      <div class="nav-group-title">导航</div>
+      <a class="nav-link-item" href="#top"><i class="fas fa-house-user"></i><span>回到顶部</span></a>
+      <a class="nav-link-item" href="#3e90c5117dc0fe9d71410e448d766e52" data-target="3e90c5117dc0fe9d71410e448d766e52"><i class="fas fa-star"></i><span>资源推荐</span></a>
+<a class="nav-link-item" href="#a4d417d7850fde0cd00e4af576621a63" data-target="a4d417d7850fde0cd00e4af576621a63"><i class="fas fa-film"></i><span>影视在线观看</span></a>
+<a class="nav-link-item" href="#e15122403d5aca361a6b63ddea292464" data-target="e15122403d5aca361a6b63ddea292464"><i class="fas fa-tv"></i><span>动漫番剧</span></a>
+<a class="nav-link-item" href="#e15122403d5aca361a6b63ddea292465" data-target="e15122403d5aca361a6b63ddea292465"><i class="fas fa-download"></i><span>资源下载</span></a>
+<a class="nav-link-item" href="#779477bcccdd4ecb1d852c8d4a67caca" data-target="779477bcccdd4ecb1d852c8d4a67caca"><i class="fas fa-tools"></i><span>工具相关</span></a>
+<a class="nav-link-item" href="#ff65f7f9721757bf11b0b0c95f1b9446" data-target="ff65f7f9721757bf11b0b0c95f1b9446"><i class="fas fa-mobile-alt"></i><span>IOS相关</span></a>
+<a class="nav-link-item" href="#722d3693fc0b9344bb46ee220beac1b6" data-target="722d3693fc0b9344bb46ee220beac1b6"><i class="fas fa-gamepad"></i><span>游戏相关</span></a>
+<a class="nav-link-item" href="#113a0a745b4169af0f7646269c12ae66" data-target="113a0a745b4169af0f7646269c12ae66"><i class="fas fa-file-powerpoint"></i><span>PPT资源</span></a>
+      <div class="nav-group-title">页面</div>
+      <a class="nav-link-item" href="#friendlink-anchor"><i class="fas fa-handshake"></i><span>友情链接</span></a>
+      <a class="nav-link-item" href="commit.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-upload"></i><span>网站提交</span></a>
+      <a class="nav-link-item" href="./about" target="_blank" rel="noopener noreferrer"><i class="fas fa-circle-info"></i><span>关于导航</span></a>
     </div>
 
-    <div class="main-content flex-fill grid-bg">
-        <div class="big-header-banner">
-            <div id="header" class="page-header sticky">
-                <div class="navbar navbar-expand-md">
-                    <div class="container-fluid p-0">
+    <div class="sidebar-bottom">
+      <div class="sidebar-meta">
+        <div><strong>本站主题</strong>：轻盈浅蓝灰 / 深色蓝灰</div>
+        <div><strong>搜索方式</strong>：站内卡片筛选</div>
+        <div id="sidebar-runtime">已稳定运行中</div>
+      </div>
+    </div>
+  </aside>
 
-                        <a href="" class="navbar-brand d-md-none" title="手记">
-                            <img src="./assets/images/bt.png" class="logo-light" alt="手记">
-                            <img src="./assets/images/bt.png" class="logo-dark d-none" alt="手记">
-                        </a>
+  <div class="overlay" id="overlay"></div>
 
-                        <div class="collapse navbar-collapse order-2 order-md-1">
-                            <div class="header-mini-btn">
-                                <label>
-                                    <input id="mini-button" type="checkbox">
-                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                        <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55"></path>
-                                        <path class="line--2" d="M0 50h80"></path>
-                                        <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45"></path>
-                                    </svg>
-                                </label>
-                            </div>
+  <main class="main" id="top">
+    <div class="mobile-topbar">
+      <div class="mobile-brand">
+        <img src="./assets/images/bt.png" alt="SAKURA手记">
+        <span>SAKURA手记</span>
+      </div>
+      <div class="mobile-actions">
+        <button class="mobile-btn" id="mobileSearchBtn" aria-label="搜索"><i class="fas fa-search"></i></button>
+        <button class="mobile-btn" id="menuBtn" aria-label="菜单"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
 
-                            <ul class="navbar-nav site-menu" style="margin-right: 16px;">
-                                <li>
-                                    <a href="./">
-                                        <i class="fa fa-home fa-lg mr-2"></i>
-                                        <span>首页</span>
-                                    </a>
-                                    <ul class="sub-menu"></ul>
-                                </li>
-
-                                <li>
-                                    <a href="./about">
-                                        <i class="fa fa-book fa-lg mr-2"></i>
-                                        <span>关于</span>
-                                    </a>
-                                    <ul class="sub-menu"></ul>
-                                </li>
-                            </ul>
-
-                            <div class="rounded-circle weather">
-                                <div id="he-plugin-simple" style="display: contents;"></div>
-                                <script>
-                                    WIDGET = {
-                                        CONFIG: {
-                                            "modules": "01234",
-                                            "background": 5,
-                                            "tmpColor": "E4C600",
-                                            "tmpSize": 14,
-                                            "cityColor": "E4C600",
-                                            "citySize": 14,
-                                            "aqiColor": "#E4C600",
-                                            "aqiSize": 14,
-                                            "weatherIconSize": 24,
-                                            "alertIconSize": 18,
-                                            "padding": "10px 10px 10px 10px",
-                                            "shadow": "1",
-                                            "language": "auto",
-                                            "borderRadius": 5,
-                                            "fixed": "false",
-                                            "vertical": "middle",
-                                            "horizontal": "left",
-                                            "key": "085791e805a24491b43b06cf58ab31e7"
-                                        }
-                                    };
-                                </script>
-                                <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
-                            </div>
-                        </div>
-
-                        <ul class="nav navbar-menu text-xs order-1 order-md-2">
-                            <li class="nav-item mr-3 mr-lg-0 d-none d-lg-block">
-                                <script>
-                                    fetch('https://v1.hitokoto.cn')
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            const hitokoto = document.getElementById('hitokoto_text');
-                                            if (hitokoto) {
-                                                hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
-                                                hitokoto.innerText = data.hitokoto;
-                                            }
-                                        })
-                                        .catch(console.error);
-                                </script>
-                                <div id="hitokoto">
-                                    <a href="#" target="_blank" id="hitokoto_text" rel="noopener noreferrer">疏影横斜水清浅，暗香浮动月黄昏。</a>
-                                </div>
-                            </li>
-
-                            <li class="nav-search ml-3 ml-md-4">
-                                <a href="javascript:" id="focus-site-search"><i class="iconfont icon-search icon-2x"></i></a>
-                            </li>
-
-                            <li class="nav-item d-md-none mobile-menu ml-3 ml-md-4">
-                                <a href="javascript:" id="sidebar-switch" data-toggle="modal" data-target="#sidebar">
-                                    <i class="iconfont icon-classification icon-2x"></i>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="placeholder" style="height: 74px;"></div>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-chip"><i class="fas fa-sparkles"></i><span>从零重写的布局骨架，保留原卡片内容</span></div>
+        <h1>SAKURA手记 · 收藏夹</h1>
+        <p>这版不再叠旧模板。结构从头整理：左侧固定导航、顶部搜索横幅、稳定的深浅色模式、双端统一的卡片搜索和更干净的留白节奏。</p>
+        <div class="search-wrap">
+          <div class="search-shell">
+            <i class="fas fa-search"></i>
+            <input type="text" id="site-card-search" placeholder="搜索本站卡片，例如：壁纸、动漫、IOS、字幕、PS" autocomplete="off">
+          </div>
+          <div class="search-tip">输入关键词后，将自动筛选本站卡片内容；卡片内容本身未改动。</div>
         </div>
+      </div>
+    </section>
 
-        <div class="header-big post-top css-color mb-4" id="search-bg">
-            <div class="s-search">
-                <div id="search-main" class="s-search mx-auto">
-                    <div class="site-search-box text-center">
-                        <form class="site-search-form" onsubmit="return false;">
-                            <input
-                                type="text"
-                                id="site-card-search"
-                                class="site-search-input"
-                                placeholder="搜索本站卡片，例如：壁纸、动漫、IOS、字幕、PS"
-                                autocomplete="off">
-                        </form>
-                        <div class="site-search-tip">输入关键词后，将自动筛选本站卡片内容</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="content" class="content-site customize-site">
-            <div id="site-search-empty" class="site-search-empty">没有找到匹配的卡片，请换个关键词试试。</div>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="3e90c5117dc0fe9d71410e448d766e52"></i>
+    <div class="content">
+      <div class="search-empty" id="search-empty">没有找到匹配的卡片，请换个关键词试试。</div>
+      <div class="content-inner">
+        <section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="3e90c5117dc0fe9d71410e448d766e52"></i>
                         资源推荐
                     </h4>
-                </div>
-
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" target="_blank" rel="noopener noreferrer" data-url="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="描述性文件">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/IOS屏蔽更新.png" data-src="assets/images/logos/IOS屏蔽更新.png" onerror="this.src='assets/images/logos/default.webp'" alt="IOS屏蔽系统更新">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>IOS屏蔽系统更新</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">描述性文件。</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://applewalls.com/" target="_blank" rel="noopener noreferrer" data-url="https://applewalls.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="原图无损无水印">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="https://applewalls.com/favicon.ico" data-src="https://applewalls.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="iPhone壁纸">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>iPhone壁纸</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">原图无损无水印</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://applewalls.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://jiejingku.net/icon/" target="_blank" rel="noopener noreferrer" data-url="https://jiejingku.net/icon/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="IOS应用图标下载">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/IOS图标.png" data-src="assets/images/logos/IOS图标.png" onerror="this.src='assets/images/logos/default.webp'" alt="图标下载">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>图标下载</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">IOS应用图标下载</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://jiejingku.net/icon/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://z-library.sk/" target="_blank" rel="noopener noreferrer" data-url="https://z-library.sk/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="书籍、小说下载">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/shuji.png" data-src="assets/images/logos/shuji.png" onerror="this.src='assets/images/logos/default.webp'" alt="书籍下载">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>书籍下载</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">书籍、小说下载</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://z-library.sk/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://benisland.neocities.org/petpet/" target="_blank" rel="noopener noreferrer" data-url="https://benisland.neocities.org/petpet/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="一个有趣的小工具">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="https://benisland.neocities.org/petpet/favicon.ico" data-src="https://benisland.neocities.org/petpet/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="小工具">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>小工具</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">一个有趣的小工具</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://benisland.neocities.org/petpet/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://zaixianps.net/" target="_blank" rel="noopener noreferrer" data-url="https://zaixianps.net/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="一键p图抠图工具">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/inoreader.jpg" data-src="assets/images/logos/inoreader.jpg" onerror="this.src='assets/images/logos/default.webp'" alt="在线ps">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>在线ps</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">一键p图抠图工具</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://zaixianps.net/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://fangdai.gitapp.cn" target="_blank" rel="noopener noreferrer" data-url="https://fangdai.gitapp.cn" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="房贷利率计算器">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/awesome_design_systems.png" data-src="assets/images/logos/awesome_design_systems.png" onerror="this.src='assets/images/logos/default.webp'" alt="房贷计算器">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>房贷计算器</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">房贷利率计算器</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://fangdai.gitapp.cn" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://m3u8player.org/" target="_blank" rel="noopener noreferrer" data-url="https://m3u8player.org/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="m3u8/hls在线播放">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/Material_Design.png" data-src="assets/images/logos/Material_Design.png" onerror="this.src='assets/images/logos/default.webp'" alt="m3u8在线播放器">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>m3u8在线播放器</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">m3u8/hls在线播放</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://m3u8player.org/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://tool.gitapp.cn" target="_blank" rel="noopener noreferrer" data-url="https://tool.gitapp.cn" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="一些常见的开发工具">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/mdx.png" data-src="assets/images/logos/mdx.png" onerror="this.src='assets/images/logos/default.webp'" alt="在线工具助手">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>在线工具助手</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">一些常见的开发工具</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://tool.gitapp.cn" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://zh.ifixit.com/" target="_blank" rel="noopener noreferrer" data-url="https://zh.ifixit.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="免费维修指南">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="https://zh.ifixit.com/favicon.ico" data-src="https://zh.ifixit.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="IFIXIT">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>IFIXIT</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">免费维修指南</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://zh.ifixit.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="https://wallhaven.cc/" target="_blank" rel="noopener noreferrer" data-url="https://wallhaven.cc/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="海量壁纸下载">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="https://wallhaven.cc/favicon.ico" data-src="https://wallhaven.cc/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="壁纸下载">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>壁纸下载</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">海量壁纸下载</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="https://wallhaven.cc/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
-                        <div class="url-body default">
-                            <a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer" data-url="http://kaboomtrainer.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="GTA5线下修改器">
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器">
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" data-toggle="tooltip" data-placement="right" title="直达"><i class="iconfont icon-goto"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="a4d417d7850fde0cd00e4af576621a63"></i>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="描述性文件" data-placement="bottom" data-toggle="tooltip" data-url="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="IOS屏蔽系统更新" class="lazy" data-src="assets/images/logos/IOS屏蔽更新.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/IOS屏蔽更新.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>IOS屏蔽系统更新</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">描述性文件。</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="原图无损无水印" data-placement="bottom" data-toggle="tooltip" data-url="https://applewalls.com/" href="https://applewalls.com/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="iPhone壁纸" class="lazy" data-src="https://applewalls.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://applewalls.com/favicon.ico"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>iPhone壁纸</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">原图无损无水印</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://applewalls.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="IOS应用图标下载" data-placement="bottom" data-toggle="tooltip" data-url="https://jiejingku.net/icon/" href="https://jiejingku.net/icon/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="图标下载" class="lazy" data-src="assets/images/logos/IOS图标.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/IOS图标.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>图标下载</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">IOS应用图标下载</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://jiejingku.net/icon/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="书籍、小说下载" data-placement="bottom" data-toggle="tooltip" data-url="https://z-library.sk/" href="https://z-library.sk/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="书籍下载" class="lazy" data-src="assets/images/logos/shuji.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/shuji.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>书籍下载</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">书籍、小说下载</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://z-library.sk/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="一个有趣的小工具" data-placement="bottom" data-toggle="tooltip" data-url="https://benisland.neocities.org/petpet/" href="https://benisland.neocities.org/petpet/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="小工具" class="lazy" data-src="https://benisland.neocities.org/petpet/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://benisland.neocities.org/petpet/favicon.ico"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>小工具</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">一个有趣的小工具</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://benisland.neocities.org/petpet/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="一键p图抠图工具" data-placement="bottom" data-toggle="tooltip" data-url="https://zaixianps.net/" href="https://zaixianps.net/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="在线ps" class="lazy" data-src="assets/images/logos/inoreader.jpg" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/inoreader.jpg"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>在线ps</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">一键p图抠图工具</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://zaixianps.net/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="房贷利率计算器" data-placement="bottom" data-toggle="tooltip" data-url="https://fangdai.gitapp.cn" href="https://fangdai.gitapp.cn" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="房贷计算器" class="lazy" data-src="assets/images/logos/awesome_design_systems.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/awesome_design_systems.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>房贷计算器</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">房贷利率计算器</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://fangdai.gitapp.cn" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="m3u8/hls在线播放" data-placement="bottom" data-toggle="tooltip" data-url="https://m3u8player.org/" href="https://m3u8player.org/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="m3u8在线播放器" class="lazy" data-src="assets/images/logos/Material_Design.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/Material_Design.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>m3u8在线播放器</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">m3u8/hls在线播放</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://m3u8player.org/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="一些常见的开发工具" data-placement="bottom" data-toggle="tooltip" data-url="https://tool.gitapp.cn" href="https://tool.gitapp.cn" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="在线工具助手" class="lazy" data-src="assets/images/logos/mdx.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/mdx.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>在线工具助手</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">一些常见的开发工具</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://tool.gitapp.cn" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="免费维修指南" data-placement="bottom" data-toggle="tooltip" data-url="https://zh.ifixit.com/" href="https://zh.ifixit.com/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="IFIXIT" class="lazy" data-src="https://zh.ifixit.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://zh.ifixit.com/favicon.ico"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>IFIXIT</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">免费维修指南</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://zh.ifixit.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="海量壁纸下载" data-placement="bottom" data-toggle="tooltip" data-url="https://wallhaven.cc/" href="https://wallhaven.cc/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="壁纸下载" class="lazy" data-src="https://wallhaven.cc/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://wallhaven.cc/favicon.ico"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>壁纸下载</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">海量壁纸下载</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="https://wallhaven.cc/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+<div class="url-body default">
+<a class="card no-c mb-4" data-original-title="GTA5线下修改器" data-placement="bottom" data-toggle="tooltip" data-url="http://kaboomtrainer.com/" href="http://kaboomtrainer.com/" rel="noopener noreferrer" target="_blank">
+<div class="card-body">
+<div class="url-content d-flex align-items-center">
+<div class="url-img mr-2 d-flex align-items-center justify-content-center">
+<img alt="瞬爆修改器" class="lazy" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/>
+</div>
+<div class="url-info flex-fill">
+<div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div>
+<p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p>
+</div>
+</div>
+</div>
+</a>
+<a class="togo text-center text-muted is-views" data-placement="right" data-toggle="tooltip" href="http://kaboomtrainer.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a>
+</div>
+</div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="a4d417d7850fde0cd00e4af576621a63"></i>
                         影视在线观看
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://m.aiyingyu.net/" target="_blank" rel="noopener noreferrer" data-url="https://m.aiyingyu.net/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="爱美剧网，在线观看。"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://m.aiyingyu.net/favicon.ico" data-src="https://m.aiyingyu.net/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="爱美剧网"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>爱美剧网</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">爱美剧网，在线观看。</p></div></div></div></a><a href="https://m.aiyingyu.net/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://wandou.la/" target="_blank" rel="noopener noreferrer" data-url="https://wandou.la/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="豌豆Pro，在线观看。"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://wandou.la/favicon.ico" data-src="https://wandou.la/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="豌豆Pro"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>豌豆Pro</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">豌豆Pro，影视在线观看</p></div></div></div></a><a href="https://wandou.la/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://www.libvio.app/" target="_blank" rel="noopener noreferrer" data-url="https://www.libvio.app/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="LIBVIO"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/LIBVIO.png" data-src="assets/images/logos/LIBVIO.png" onerror="this.src='assets/images/logos/default.webp'" alt="LIBVIO"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>LIBVIO</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">LIBVIO在线视频</p></div></div></div></a><a href="https://www.libvio.app/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://gimy.tv/" target="_blank" rel="noopener noreferrer" data-url="https://gimy.tv/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="剧迷"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://gimy.tv/favicon.ico" data-src="https://gimy.tv/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="剧迷"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>剧迷</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">剧迷，小而美。</p></div></div></div></a><a href="https://gimy.tv/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://www.czzy.site/" target="_blank" rel="noopener noreferrer" data-url="https://www.czzy.site/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="质量1080P"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://www.cz4k.com/favicon.ico" data-src="https://www.cz4k.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="厂长影视"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>厂长影视</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">质量1080P</p></div></div></div></a><a href="https://www.czzy.site/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://www.zxzjhd.com/" target="_blank" rel="noopener noreferrer" data-url="https://www.zxzjhd.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="老牌知名影视网站。"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/在线之家.png" data-src="assets/images/logos/在线之家.png" onerror="this.src='assets/images/logos/default.webp'" alt="在线之家"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>在线之家</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">老牌知名影视网站。</p></div></div></div></a><a href="https://www.zxzjhd.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://www.cilixiong.cc/" target="_blank" rel="noopener noreferrer" data-url="https://www.cilixiong.cc/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="纯净的1080P"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://www.cilixiong.cc/favicon.ico" data-src="https://www.cilixiong.cc/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="磁力熊"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>磁力熊</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">纯净的1080P</p></div></div></div></a><a href="https://www.cilixiong.cc/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://gaze.run/" target="_blank" rel="noopener noreferrer" data-url="https://gaze.run/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="小众，清爽无广告"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://gaze.run/favicon.ico" data-src="https://gaze.run/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="注视影视"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>注视影视</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">小众，清爽无广告</p></div></div></div></a><a href="https://gaze.run/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="e15122403d5aca361a6b63ddea292464"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="爱美剧网，在线观看。" data-placement="bottom" data-toggle="tooltip" data-url="https://m.aiyingyu.net/" href="https://m.aiyingyu.net/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="爱美剧网" class="lazy" data-src="https://m.aiyingyu.net/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://m.aiyingyu.net/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>爱美剧网</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">爱美剧网，在线观看。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://m.aiyingyu.net/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="豌豆Pro，在线观看。" data-placement="bottom" data-toggle="tooltip" data-url="https://wandou.la/" href="https://wandou.la/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="豌豆Pro" class="lazy" data-src="https://wandou.la/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://wandou.la/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>豌豆Pro</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">豌豆Pro，影视在线观看</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://wandou.la/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="LIBVIO" data-placement="bottom" data-toggle="tooltip" data-url="https://www.libvio.app/" href="https://www.libvio.app/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="LIBVIO" class="lazy" data-src="assets/images/logos/LIBVIO.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/LIBVIO.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>LIBVIO</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">LIBVIO在线视频</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://www.libvio.app/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="剧迷" data-placement="bottom" data-toggle="tooltip" data-url="https://gimy.tv/" href="https://gimy.tv/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="剧迷" class="lazy" data-src="https://gimy.tv/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://gimy.tv/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>剧迷</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">剧迷，小而美。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://gimy.tv/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="质量1080P" data-placement="bottom" data-toggle="tooltip" data-url="https://www.czzy.site/" href="https://www.czzy.site/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="厂长影视" class="lazy" data-src="https://www.cz4k.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://www.cz4k.com/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>厂长影视</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">质量1080P</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://www.czzy.site/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="老牌知名影视网站。" data-placement="bottom" data-toggle="tooltip" data-url="https://www.zxzjhd.com/" href="https://www.zxzjhd.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="在线之家" class="lazy" data-src="assets/images/logos/在线之家.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/在线之家.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>在线之家</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">老牌知名影视网站。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://www.zxzjhd.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="纯净的1080P" data-placement="bottom" data-toggle="tooltip" data-url="https://www.cilixiong.cc/" href="https://www.cilixiong.cc/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="磁力熊" class="lazy" data-src="https://www.cilixiong.cc/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://www.cilixiong.cc/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>磁力熊</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">纯净的1080P</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://www.cilixiong.cc/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="小众，清爽无广告" data-placement="bottom" data-toggle="tooltip" data-url="https://gaze.run/" href="https://gaze.run/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="注视影视" class="lazy" data-src="https://gaze.run/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://gaze.run/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>注视影视</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">小众，清爽无广告</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://gaze.run/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="e15122403d5aca361a6b63ddea292464"></i>
                         动漫番剧
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://anime1.me/" target="_blank" rel="noopener noreferrer" data-url="https://anime1.me/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="页面简洁、更新速度快"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://anime1.me/favicon.ico" data-src="https://anime1.me/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="Anime1"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>Anime1</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">页面简洁、更新速度快</p></div></div></div></a><a href="https://anime1.me/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://skrto.top/" target="_blank" rel="noopener noreferrer" data-url="https://skrto.top/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="待添加"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/坤哥.png" data-src="assets/images/logos/坤哥.png" onerror="this.src='assets/images/logos/default.webp'" alt="待添加"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>待添加</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">待添加。</p></div></div></div></a><a href="https://skrto.top/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="e15122403d5aca361a6b63ddea292465"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="页面简洁、更新速度快" data-placement="bottom" data-toggle="tooltip" data-url="https://anime1.me/" href="https://anime1.me/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="Anime1" class="lazy" data-src="https://anime1.me/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://anime1.me/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>Anime1</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">页面简洁、更新速度快</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://anime1.me/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="待添加" data-placement="bottom" data-toggle="tooltip" data-url="https://skrto.top/" href="https://skrto.top/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="待添加" class="lazy" data-src="assets/images/logos/坤哥.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/坤哥.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>待添加</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">待添加。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://skrto.top/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="e15122403d5aca361a6b63ddea292465"></i>
                         资源下载
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://skrdizhi.com/" target="_blank" rel="noopener noreferrer" data-url="https://skrdizhi.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="BT磁力搜索"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://skrdizhi.com/favicon.ico" data-src="https://skrdizhi.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="磁力搜索"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>磁力搜索</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">BT磁力搜素</p></div></div></div></a><a href="https://skrdizhi.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://share.dmhy.org/" target="_blank" rel="noopener noreferrer" data-url="https://share.dmhy.org/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="动漫资源下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://share.dmhy.org/favicon.ico" data-src="https://share.dmhy.org/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="动漫花园"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫资源下载</p></div></div></div></a><a href="https://share.dmhy.org/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer" data-url="https://dongmanhuayuan.myheartsite.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="动漫花园同步站"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/花园镜像.png" onerror="this.src='assets/images/logos/default.webp'" alt="动漫花园镜像站"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园镜像站</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫花园同步站</p></div></div></div></a><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://wpzy.cc/" target="_blank" rel="noopener noreferrer" data-url="https://wpzy.cc/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="分享网盘资源"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/AQ网盘资源.png" data-src="assets/images/logos/AQ网盘资源.png" onerror="this.src='assets/images/logos/default.webp'" alt="AQ网盘资源"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>AQ网盘资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a href="https://wpzy.cc/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer" data-url="http://t-rex.tzfile.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="分享网盘资源"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/团长资源.png" onerror="this.src='assets/images/logos/default.webp'" alt="团长资源"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>团长资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://kkdm.xyz/" target="_blank" rel="noopener noreferrer" data-url="https://kkdm.xyz/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="专注日韩动漫分享"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://kkdm.xyz/favicon.ico" data-src="https://kkdm.xyz/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="快快动漫"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>快快动漫</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">专注日韩动漫分享</p></div></div></div></a><a href="https://kkdm.xyz/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://www.yinfans.me/" target="_blank" rel="noopener noreferrer" data-url="https://www.yinfans.me/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="4K蓝光圆盘下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/音范丝.png" data-src="assets/images/logos/音范丝.png" onerror="this.src='assets/images/logos/default.webp'" alt="音范丝"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>音范丝</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">4K蓝光圆盘下载</p></div></div></div></a><a href="https://www.yinfans.me/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://bbs.yiove.com/forum-4.htm" target="_blank" rel="noopener noreferrer" data-url="https://bbs.yiove.com/forum-4.htm" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="影视资源网盘分享"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/综合资源区.png" data-src="assets/images/logos/综合资源区.png" onerror="this.src='assets/images/logos/default.webp'" alt="综合资源区"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>综合资源区</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">影视资源网盘分享</p></div></div></div></a><a href="https://bbs.yiove.com/forum-4.htm" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer" data-url="https://srtku.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="字幕分享下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/字幕.png" onerror="this.src='assets/images/logos/default.webp'" alt="字幕库"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>字幕库</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕分享下载</p></div></div></div></a><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://assrt.net/" target="_blank" rel="noopener noreferrer" data-url="https://assrt.net/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="字幕下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://assrt.net/favicon.ico" data-src="https://assrt.net/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="伪射手网"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>伪射手网</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕下载</p></div></div></div></a><a href="https://assrt.net/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="779477bcccdd4ecb1d852c8d4a67caca"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="BT磁力搜索" data-placement="bottom" data-toggle="tooltip" data-url="https://skrdizhi.com/" href="https://skrdizhi.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="磁力搜索" class="lazy" data-src="https://skrdizhi.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://skrdizhi.com/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>磁力搜索</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">BT磁力搜素</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://skrdizhi.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="动漫资源下载" data-placement="bottom" data-toggle="tooltip" data-url="https://share.dmhy.org/" href="https://share.dmhy.org/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="动漫花园" class="lazy" data-src="https://share.dmhy.org/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://share.dmhy.org/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫资源下载</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://share.dmhy.org/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="动漫花园同步站" data-placement="bottom" data-toggle="tooltip" data-url="https://dongmanhuayuan.myheartsite.com/" href="https://dongmanhuayuan.myheartsite.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="动漫花园镜像站" class="lazy" data-src="assets/images/logos/花园镜像.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园镜像站</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫花园同步站</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://dongmanhuayuan.myheartsite.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="分享网盘资源" data-placement="bottom" data-toggle="tooltip" data-url="https://wpzy.cc/" href="https://wpzy.cc/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="AQ网盘资源" class="lazy" data-src="assets/images/logos/AQ网盘资源.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/AQ网盘资源.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>AQ网盘资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://wpzy.cc/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="分享网盘资源" data-placement="bottom" data-toggle="tooltip" data-url="http://t-rex.tzfile.com/" href="http://t-rex.tzfile.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="团长资源" class="lazy" data-src="assets/images/logos/团长资源.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>团长资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a class="togo text-center text-muted is-views" href="http://t-rex.tzfile.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="专注日韩动漫分享" data-placement="bottom" data-toggle="tooltip" data-url="https://kkdm.xyz/" href="https://kkdm.xyz/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="快快动漫" class="lazy" data-src="https://kkdm.xyz/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://kkdm.xyz/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>快快动漫</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">专注日韩动漫分享</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://kkdm.xyz/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="4K蓝光圆盘下载" data-placement="bottom" data-toggle="tooltip" data-url="https://www.yinfans.me/" href="https://www.yinfans.me/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="音范丝" class="lazy" data-src="assets/images/logos/音范丝.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/音范丝.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>音范丝</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">4K蓝光圆盘下载</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://www.yinfans.me/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="影视资源网盘分享" data-placement="bottom" data-toggle="tooltip" data-url="https://bbs.yiove.com/forum-4.htm" href="https://bbs.yiove.com/forum-4.htm" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="综合资源区" class="lazy" data-src="assets/images/logos/综合资源区.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/综合资源区.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>综合资源区</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">影视资源网盘分享</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://bbs.yiove.com/forum-4.htm" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="字幕分享下载" data-placement="bottom" data-toggle="tooltip" data-url="https://srtku.com/" href="https://srtku.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="字幕库" class="lazy" data-src="assets/images/logos/字幕.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>字幕库</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕分享下载</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://srtku.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="字幕下载" data-placement="bottom" data-toggle="tooltip" data-url="https://assrt.net/" href="https://assrt.net/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="伪射手网" class="lazy" data-src="https://assrt.net/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://assrt.net/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>伪射手网</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕下载</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://assrt.net/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="779477bcccdd4ecb1d852c8d4a67caca"></i>
                         工具相关
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer" data-url="https://web.baimiaoapp.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="图片转文字、图片文字提取"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/白描网页.png" onerror="this.src='assets/images/logos/default.webp'" alt="白描网页"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>白描网页</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">图片转文字、图片文字提取</p></div></div></div></a><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://waifu2x.udp.jp/" target="_blank" rel="noopener noreferrer" data-url="http://waifu2x.udp.jp/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="waifu"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="http://waifu2x.udp.jp/favicon.ico" data-src="http://waifu2x.udp.jp/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="图片放大"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>图片放大</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">waifu</p></div></div></div></a><a href="http://waifu2x.udp.jp/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="ff65f7f9721757bf11b0b0c95f1b9446"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="图片转文字、图片文字提取" data-placement="bottom" data-toggle="tooltip" data-url="https://web.baimiaoapp.com/" href="https://web.baimiaoapp.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="白描网页" class="lazy" data-src="assets/images/logos/白描网页.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>白描网页</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">图片转文字、图片文字提取</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://web.baimiaoapp.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="waifu" data-placement="bottom" data-toggle="tooltip" data-url="http://waifu2x.udp.jp/" href="http://waifu2x.udp.jp/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="图片放大" class="lazy" data-src="http://waifu2x.udp.jp/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="http://waifu2x.udp.jp/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>图片放大</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">waifu</p></div></div></div></a><a class="togo text-center text-muted is-views" href="http://waifu2x.udp.jp/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="ff65f7f9721757bf11b0b0c95f1b9446"></i>
                         IOS相关
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://app.vbr.me/" target="_blank" rel="noopener noreferrer" data-url="https://app.vbr.me/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="查询全球应用定价"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://app.vbr.me/favicon.ico" data-src="https://app.vbr.me/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="App Store价格查询"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>App Store价格查询</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">查询全球应用定价</p></div></div></div></a><a href="https://app.vbr.me/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" target="_blank" rel="noopener noreferrer" data-url="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="描述性文件"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/IOS屏蔽更新.png" data-src="assets/images/logos/IOS屏蔽更新.png" onerror="this.src='assets/images/logos/default.webp'" alt="IOS屏蔽系统更新"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>IOS屏蔽系统更新</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">描述性文件。</p></div></div></div></a><a href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://applewalls.com/" target="_blank" rel="noopener noreferrer" data-url="https://applewalls.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="原图无损无水印"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://applewalls.com/favicon.ico" data-src="https://applewalls.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="iPhone壁纸"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>iPhone壁纸</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">原图无损无水印</p></div></div></div></a><a href="https://applewalls.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://jiejingku.net/icon/" target="_blank" rel="noopener noreferrer" data-url="https://jiejingku.net/icon/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="IOS应用图标下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/IOS图标.png" data-src="assets/images/logos/IOS图标.png" onerror="this.src='assets/images/logos/default.webp'" alt="图标下载"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>图标下载</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">IOS应用图标下载</p></div></div></div></a><a href="https://jiejingku.net/icon/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="722d3693fc0b9344bb46ee220beac1b6"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="查询全球应用定价" data-placement="bottom" data-toggle="tooltip" data-url="https://app.vbr.me/" href="https://app.vbr.me/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="App Store价格查询" class="lazy" data-src="https://app.vbr.me/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://app.vbr.me/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>App Store价格查询</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">查询全球应用定价</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://app.vbr.me/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="描述性文件" data-placement="bottom" data-toggle="tooltip" data-url="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="IOS屏蔽系统更新" class="lazy" data-src="assets/images/logos/IOS屏蔽更新.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/IOS屏蔽更新.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>IOS屏蔽系统更新</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">描述性文件。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://d-updater.i4.cn/web/mobileconfig/iOS26.mobileconfig" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="原图无损无水印" data-placement="bottom" data-toggle="tooltip" data-url="https://applewalls.com/" href="https://applewalls.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="iPhone壁纸" class="lazy" data-src="https://applewalls.com/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" src="https://applewalls.com/favicon.ico"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>iPhone壁纸</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">原图无损无水印</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://applewalls.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="IOS应用图标下载" data-placement="bottom" data-toggle="tooltip" data-url="https://jiejingku.net/icon/" href="https://jiejingku.net/icon/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="图标下载" class="lazy" data-src="assets/images/logos/IOS图标.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/IOS图标.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>图标下载</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">IOS应用图标下载</p></div></div></div></a><a class="togo text-center text-muted is-views" href="https://jiejingku.net/icon/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="722d3693fc0b9344bb46ee220beac1b6"></i>
                         游戏相关
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer" data-url="http://kaboomtrainer.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="GTA5线下修改器"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p></div></div></div></a><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="d-flex flex-fill">
-                    <h4 class="text-gray text-lg mb-4">
-                        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="113a0a745b4169af0f7646269c12ae66"></i>
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="GTA5线下修改器" data-placement="bottom" data-toggle="tooltip" data-url="http://kaboomtrainer.com/" href="http://kaboomtrainer.com/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="瞬爆修改器" class="lazy" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/图标名.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p></div></div></div></a><a class="togo text-center text-muted is-views" href="http://kaboomtrainer.com/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+<section class="site-section">
+<div class="d-flex flex-fill">
+<h4 class="text-gray text-lg mb-4">
+<i class="site-tag iconfont icon-tag icon-lg mr-1" id="113a0a745b4169af0f7646269c12ae66"></i>
                         PPT资源
                     </h4>
-                    <div class="flex-fill"></div>
-                </div>
-                <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://ppt.500d.me/" target="_blank" rel="noopener noreferrer" data-url="http://ppt.500d.me/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="中国领先的PPT模板共享平台。"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/500d.png" data-src="assets/images/logos/500d.png" onerror="this.src='assets/images/logos/default.webp'" alt="5百丁"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>5百丁</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">中国领先的PPT模板共享平台。</p></div></div></div></a><a href="http://ppt.500d.me/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
-                </div>
-            </section>
-
-            <h4 class="text-gray text-lg mb-4">
-                <i class="iconfont icon-book-mark-line icon-lg mr-2" id="friendlink"></i>友情链接
-            </h4>
-            <div class="friendlink text-xs card">
-                <div class="card-body">
-                    <a href="https://csdn.net" title="程序员社区" target="_blank" rel="noopener noreferrer">CSDN</a>
-                    <a href="https://gitapp.cn/" title="程序设计网" target="_blank" rel="noopener noreferrer">程序设计网</a>
-                    <a href="https://juejin.im" title="掘金社区" target="_blank" rel="noopener noreferrer">掘金社区</a>
-                    <a href="https://aliyun.com" title="阿里云社区" target="_blank" rel="noopener noreferrer">阿里云社区</a>
-                </div>
-            </div>
-        </div>
-
-        <footer class="main-footer footer-type-1 text-xs">
-            <div id="footer-tools" class="d-flex flex-column">
-                <a href="javascript:" id="go-to-up" class="btn rounded-circle go-up m-1" rel="go-top">
-                    <i class="iconfont icon-to-up"></i>
-                </a>
-
-                <a href="javascript:" id="footer-focus-search" class="btn rounded-circle m-1" rel="search">
-                    <i class="iconfont icon-search"></i>
-                </a>
-
-                <a href="javascript:" onclick="switchNightMode()" class="btn rounded-circle switch-dark-mode m-1" id="yejian"
-                    data-toggle="tooltip" data-placement="left" title="日间模式">
-                    <i class="mode-ico iconfont icon-night"></i>
-                </a>
-            </div>
-
-            <div class="footer-inner">
-                <div class="footer-text">
+<div class="flex-fill"></div>
+</div>
+<div class="row">
+<div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a class="card no-c mb-4" data-original-title="中国领先的PPT模板共享平台。" data-placement="bottom" data-toggle="tooltip" data-url="http://ppt.500d.me/" href="http://ppt.500d.me/" rel="noopener noreferrer" target="_blank"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img alt="5百丁" class="lazy" data-src="assets/images/logos/500d.png" onerror="this.src='assets/images/logos/default.webp'" src="assets/images/logos/500d.png"/></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>5百丁</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">中国领先的PPT模板共享平台。</p></div></div></div></a><a class="togo text-center text-muted is-views" href="http://ppt.500d.me/" rel="noopener noreferrer nofollow" target="_blank" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+</div>
+</section>
+        <section class="site-section friend-section"><div class="section-head"><h2 id="friendlink-anchor"><span class="section-icon"><i class="far fa-handshake"></i></span><span>友情链接</span></h2></div><div class="friendlink text-xs card">
+<div class="card-body">
+<a href="https://csdn.net" rel="noopener noreferrer" target="_blank" title="程序员社区">CSDN</a>
+<a href="https://gitapp.cn/" rel="noopener noreferrer" target="_blank" title="程序设计网">程序设计网</a>
+<a href="https://juejin.im" rel="noopener noreferrer" target="_blank" title="掘金社区">掘金社区</a>
+<a href="https://aliyun.com" rel="noopener noreferrer" target="_blank" title="阿里云社区">阿里云社区</a>
+</div>
+</div></section>
+        <footer class="site-footer">
+          <div class="footer-text">
                     本站内容源自互联网，如有内容侵犯了你的权益，请联系删除相关内容，联系邮箱：lcy669669@gmail.com
-                    <br>© 2026 By <a href="https://github.com/xhscf/" target="_blank" rel="noopener noreferrer">Web_tool</a> |
-                    <a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2023018588号</a>
-
-                    <div id="runtime" style="text-align:center;margin:20px 0;color:#39C5BB;font-size:13px;letter-spacing:1px;text-shadow:0 0 5px #39C5BB;"></div>
-                </div>
-            </div>
+                    <br/>© 2026 By <a href="https://github.com/xhscf/" rel="noopener noreferrer" target="_blank">Web_tool</a> |
+                    <a href="http://beian.miit.gov.cn/" rel="noopener noreferrer" target="_blank">京ICP备2023018588号</a>
+<div id="runtime" style="text-align:center;margin:20px 0;color:#39C5BB;font-size:13px;letter-spacing:1px;text-shadow:0 0 5px #39C5BB;"></div>
+</div>
+          <div id="runtime"></div>
         </footer>
+      </div>
     </div>
+  </main>
+
+  <div class="float-tools">
+    <button class="float-btn" id="goTopBtn" aria-label="回到顶部"><i class="fas fa-arrow-up"></i></button>
+    <button class="float-btn" id="focusSearchBtn" aria-label="搜索"><i class="fas fa-search"></i></button>
+    <button class="float-btn" id="themeBtn" aria-label="切换主题"><i class="fas fa-moon"></i></button>
+  </div>
 </div>
 
-<script src="./assets/js/jquery.ui.touch-punch.min-0.2.2.js"></script>
-<script src="./assets/js/clipboard.min-5.6.2.js"></script>
-<script src="./assets/js/tooltip-extend.js"></script>
-
 <script>
-var theme = {
-    "ajaxurl": "",
-    "addico": "https://nav.baidu.cn/wp-content/themes/onenav/images/add.png",
-    "order": "asc",
-    "formpostion": "top",
-    "defaultclass": "io-grey-mode",
-    "isCustomize": "1",
-    "icourl": "",
-    "icopng": ".png",
-    "urlformat": "1",
-    "customizemax": "10",
-    "newWindow": "0",
-    "lazyload": "1",
-    "minNav": "1",
-    "loading": "1",
-    "hotWords": "baidu",
-    "classColumns": " col-sm-6 col-md-4 col-xl-5a col-xxl-6a ",
-    "apikey": "TWpBeU1UVTNOekk1TWpVMEIvZ1M2bFVIQllUMmxsV1dZelkxQTVPVzB3UW04eldGQmxhM3BNWW14bVNtWk4="
-};
-</script>
+(function() {
+  const body = document.body;
+  const searchInput = document.getElementById('site-card-search');
+  const searchEmpty = document.getElementById('search-empty');
+  const cards = Array.from(document.querySelectorAll('.url-card'));
+  const sections = Array.from(document.querySelectorAll('.site-section'));
+  const navLinks = Array.from(document.querySelectorAll('.nav-link-item[data-target]'));
+  const goTopBtn = document.getElementById('goTopBtn');
+  const focusSearchBtn = document.getElementById('focusSearchBtn');
+  const themeBtn = document.getElementById('themeBtn');
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+  const overlay = document.getElementById('overlay');
+  const sidebar = document.getElementById('sidebar');
 
-<script src="./assets/js/popper.min.js"></script>
-<script src="./assets/js/bootstrap.min-4.3.1.js"></script>
-<script src="./assets/js/theia-sticky-sidebar-1.5.0.js"></script>
-<script src="./assets/js/lazyload.min-12.4.0.js"></script>
-<script src="./assets/js/fancybox.min-3.5.7.js"></script>
-<script src="./assets/js/app-anim.js"></script>
+  function normalize(text) {
+    return (text || '').toLowerCase().replace(/\s+/g, '');
+  }
 
-<script>
-$(document).ready(function () {
-    var siteWelcome = $('#loading');
-    siteWelcome.addClass('close');
-    setTimeout(function () {
-        siteWelcome.remove();
-    }, 600);
-});
-</script>
+  function filterCards() {
+    const keyword = normalize(searchInput.value);
+    let visibleCount = 0;
 
-<script>
-$(document).ready(function () {
-    setTimeout(function () {
-        if ($('a.smooth[href="' + window.location.hash + '"]')[0]) {
-            $('a.smooth[href="' + window.location.hash + '"]').click();
-        } else if (window.location.hash !== '' && $(window.location.hash).length) {
-            $("html, body").animate({
-                scrollTop: $(window.location.hash).offset().top - 90
-            }, {
-                duration: 500,
-                easing: "swing"
-            });
+    sections.forEach(section => {
+      const sectionCards = Array.from(section.querySelectorAll('.url-card'));
+      let sectionVisible = 0;
+
+      sectionCards.forEach(card => {
+        const title = card.querySelector('.url-info strong')?.innerText || '';
+        const desc = card.querySelector('.url-info p')?.innerText || '';
+        const url = card.querySelector('a.card')?.getAttribute('href') || '';
+        const fullText = normalize(title + ' ' + desc + ' ' + url);
+        const matched = !keyword || fullText.includes(keyword);
+        card.style.display = matched ? '' : 'none';
+        if (matched) {
+          visibleCount++;
+          sectionVisible++;
         }
-    }, 300);
+      });
 
-    $(document).on('click', 'a.smooth', function () {
-        if ($('#sidebar').hasClass('show') && !$(this).hasClass('change-href')) {
-            $('#sidebar').modal('toggle');
-        }
-
-        if ($(this).attr("href").substr(0, 1) === "#" && $($(this).attr("href")).length) {
-            $("html, body").animate({
-                scrollTop: $($(this).attr("href")).offset().top - 90
-            }, {
-                duration: 500,
-                easing: "swing"
-            });
-        }
-
-        if (!$(this).hasClass('change-href')) {
-            var menu = $("a" + $(this).attr("href"));
-            if (menu.length) {
-                menu.click();
-                if (typeof toTarget === "function") {
-                    toTarget(menu.parent().parent(), true, true);
-                }
-            }
-        }
+      section.style.display = sectionVisible > 0 ? '' : 'none';
     });
-});
-</script>
 
-<script>
-(function () {
-    if (document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
-        if (new Date().getHours() > 22 || new Date().getHours() < 6) {
-            document.body.classList.remove('io-black-mode');
-            document.body.classList.add('io-grey-mode');
-            document.cookie = "night=1;path=/";
-        } else {
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/";
-        }
-    } else {
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-        if (night === '0') {
-            document.body.classList.remove('night');
-        } else if (night === '1') {
-            document.body.classList.add('night');
-        }
-    }
-})();
+    searchEmpty.classList.toggle('show', keyword !== '' && visibleCount === 0);
+  }
 
-$("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+  function setTheme(theme) {
+    body.classList.toggle('theme-dark', theme === 'dark');
+    themeBtn.innerHTML = theme === 'dark'
+      ? '<i class="fas fa-sun"></i>'
+      : '<i class="fas fa-moon"></i>';
+    localStorage.setItem('sakura-theme', theme);
+  }
 
-function switchNightMode() {
-    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-    if (night === '0') {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
-        document.body.classList.remove('io-grey-mode');
-        document.body.classList.add('io-black-mode');
-        document.cookie = "night=1;path=/";
-        $(".switch-dark-mode").attr("data-original-title", "日间模式");
-        $(".mode-ico").removeClass("icon-night").addClass("icon-light");
-    } else {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
-        document.body.classList.remove('io-black-mode');
-        document.body.classList.add('io-grey-mode');
-        document.cookie = "night=0;path=/";
-        $(".switch-dark-mode").attr("data-original-title", "夜间模式");
-        $(".mode-ico").removeClass("icon-light").addClass("icon-night");
-    }
-}
-</script>
+  function initTheme() {
+    const saved = localStorage.getItem('sakura-theme');
+    if (saved) return setTheme(saved);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light');
+  }
 
-<script>
-function updateRuntime() {
-    const startTime = new Date("2026-03-15T00:00:00+08:00");
+  function updateRuntime() {
+    const startTime = new Date('2026-03-15T00:00:00+08:00');
     const now = new Date();
     const diff = now - startTime;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
-    const minutes = Math.floor(diff / (1000 * 60) % 60);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor(diff / 3600000 % 24);
+    const minutes = Math.floor(diff / 60000 % 60);
     const seconds = Math.floor(diff / 1000 % 60);
+    const pad = n => String(n).padStart(2, '0');
+    const text = `⏱️ 已稳定运行 ${days}天 ${pad(hours)}时 ${pad(minutes)}分 ${pad(seconds)}秒`;
+    const runtime = document.getElementById('runtime');
+    const sidebarRuntime = document.getElementById('sidebar-runtime');
+    if (runtime) runtime.textContent = text;
+    if (sidebarRuntime) sidebarRuntime.textContent = text;
+  }
 
-    function pad(n) {
-        return n < 10 ? '0' + n : n;
-    }
+  function focusSearch() {
+    const top = window.innerWidth <= 767 ? 76 : 0;
+    window.scrollTo({ top, behavior: 'smooth' });
+    setTimeout(() => searchInput.focus(), 220);
+  }
 
-    const runtime = document.getElementById("runtime");
-    if (runtime) {
-        runtime.innerText = `⏱️ 已稳定运行 ${days}天 ${pad(hours)}时 ${pad(minutes)}分 ${pad(seconds)}秒`;
-    }
-}
-setInterval(updateRuntime, 1000);
-updateRuntime();
-</script>
+  function closeDrawer() {
+    body.classList.remove('drawer-open');
+  }
+  function openDrawer() {
+    body.classList.add('drawer-open');
+  }
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("site-card-search");
-    const content = document.getElementById("content");
-    const emptyBox = document.getElementById("site-search-empty");
-    const sections = Array.from(document.querySelectorAll(".site-section"));
-    const focusButtons = [document.getElementById("focus-site-search"), document.getElementById("footer-focus-search")];
-
-    function normalizeText(text) {
-        return (text || "").toLowerCase().replace(/\s+/g, "");
-    }
-
-    function focusSearch() {
-        if (!searchInput) return;
-        searchInput.focus();
-        searchInput.classList.add("site-search-highlight");
-        setTimeout(() => searchInput.classList.remove("site-search-highlight"), 1200);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    focusButtons.forEach(btn => {
-        if (btn) {
-            btn.addEventListener("click", function (e) {
-                e.preventDefault();
-                focusSearch();
-            });
-        }
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.querySelector('[id]')?.id;
+      if (!id) return;
+      const link = document.querySelector(`.nav-link-item[data-target="${id}"]`);
+      if (entry.isIntersecting) {
+        navLinks.forEach(item => item.classList.remove('is-active'));
+        if (link) link.classList.add('is-active');
+      }
     });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
 
-    if (!searchInput || !content) return;
+  sections.forEach(section => sectionObserver.observe(section));
 
-    const cards = Array.from(content.querySelectorAll(".url-card"));
+  searchInput.addEventListener('input', filterCards);
+  goTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  focusSearchBtn.addEventListener('click', focusSearch);
+  mobileSearchBtn?.addEventListener('click', focusSearch);
+  themeBtn.addEventListener('click', () => setTheme(body.classList.contains('theme-dark') ? 'light' : 'dark'));
+  menuBtn?.addEventListener('click', openDrawer);
+  overlay?.addEventListener('click', closeDrawer);
 
-    function filterCards() {
-        const keyword = normalizeText(searchInput.value);
-        let visibleCards = 0;
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.pageYOffset - (window.innerWidth <= 767 ? 86 : 22);
+      window.scrollTo({ top, behavior: 'smooth' });
+      closeDrawer();
+    });
+  });
 
-        cards.forEach(card => {
-            const title = card.querySelector(".url-info strong")?.innerText || "";
-            const desc = card.querySelector(".url-info p")?.innerText || "";
-            const url = card.querySelector("a.card")?.getAttribute("href") || "";
-            const fullText = normalizeText(title + " " + desc + " " + url);
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 767) closeDrawer();
+  });
 
-            const matched = !keyword || fullText.includes(keyword);
-            card.style.display = matched ? "" : "none";
-            if (matched) visibleCards++;
-        });
-
-        sections.forEach(section => {
-            const hasVisible = Array.from(section.querySelectorAll(".url-card")).some(card => card.style.display !== "none");
-            section.style.display = hasVisible ? "" : "none";
-        });
-
-        if (emptyBox) {
-            emptyBox.classList.toggle("show", keyword !== "" && visibleCards === 0);
-        }
-    }
-
-    searchInput.addEventListener("input", filterCards);
-});
+  initTheme();
+  updateRuntime();
+  setInterval(updateRuntime, 1000);
+})();
 </script>
 </body>
 </html>
