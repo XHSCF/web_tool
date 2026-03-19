@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#e4eef4">
+    <meta name="theme-color" content="#f9f9f9">
     <title>SAKURA手记 - 收藏夹</title>
     <link rel="shortcut icon" href="./assets/images/favicon.png">
     <meta name="keywords" content="在线工具网">
@@ -24,103 +24,50 @@
     <style>
 
         :root {
-            --day-page-bg: #e4eef4;
-            --day-surface: rgba(255,255,255,.72);
-            --day-surface-strong: rgba(255,255,255,.86);
-            --day-border: rgba(131, 154, 176, .16);
-            --day-shadow: 0 12px 32px rgba(70, 92, 116, .10);
-            --dark-page-bg: #1f2a38;
-            --dark-surface: rgba(36, 50, 67, .78);
-            --dark-surface-strong: rgba(31, 43, 58, .9);
-            --dark-border: rgba(255,255,255,.08);
-            --dark-shadow: 0 16px 36px rgba(0, 0, 0, .28);
+            --grid-line-light: rgba(71, 101, 138, 0.10);
+            --grid-line-light-bold: rgba(71, 101, 138, 0.16);
+            --grid-line-dark: rgba(164, 188, 214, 0.09);
+            --grid-line-dark-bold: rgba(164, 188, 214, 0.14);
         }
         body.io-grey-mode,
-        body.io-grey-mode .main-content.grid-bg,
-        body.io-grey-mode .page-container {
-            background-color: var(--day-page-bg) !important;
-        }
-        body.io-grey-mode .main-content.grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, rgba(120, 144, 166, .10) 1px, transparent 0) !important;
-            background-size: 22px 22px !important;
-        }
-        body.io-grey-mode .sidebar-nav-inner,
-        body.io-grey-mode .page-header,
-        body.io-grey-mode .friendlink.card,
-        body.io-grey-mode .main-footer .footer-inner,
-        body.io-grey-mode .site-search-empty,
-        body.io-grey-mode .footer-tools .btn,
-        body.io-grey-mode .url-card .card.no-c,
-        body.io-grey-mode .card,
-        body.io-grey-mode .modal-dialog {
-            background: var(--day-surface) !important;
-            border-color: var(--day-border) !important;
-            box-shadow: var(--day-shadow) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        body.io-grey-mode .site-search-input {
-            background: var(--day-surface-strong) !important;
-            color: #223142 !important;
-            box-shadow: 0 10px 26px rgba(70, 92, 116, .14) !important;
-        }
-        body.io-grey-mode .site-search-input::placeholder {
-            color: rgba(58, 78, 97, .58) !important;
-        }
-        body.io-grey-mode .text-muted,
-        body.io-grey-mode .site-search-empty,
-        body.io-grey-mode .sidebar-menu-inner ul li ul li a,
-        body.io-grey-mode .footer-text,
-        body.io-grey-mode .url-info p {
-            color: #5f7388 !important;
+        body.io-grey-mode .main-content,
+        body.io-grey-mode .grid-bg,
+        body.io-grey-mode #content {
+            background-color: #e4eef4;
+            background-image:
+                linear-gradient(var(--grid-line-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line-light) 1px, transparent 1px),
+                linear-gradient(var(--grid-line-light-bold) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line-light-bold) 1px, transparent 1px);
+            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+            background-position: 0 0, 0 0, 0 0, 0 0;
         }
         body.io-black-mode,
-        body.io-black-mode .main-content.grid-bg,
-        body.io-black-mode .page-container {
-            background-color: var(--dark-page-bg) !important;
+        body.io-black-mode .main-content,
+        body.io-black-mode .grid-bg,
+        body.io-black-mode #content,
+        body.night,
+        body.night .main-content,
+        body.night .grid-bg,
+        body.night #content {
+            background-color: #0f1d31;
+            background-image:
+                linear-gradient(var(--grid-line-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line-dark) 1px, transparent 1px),
+                linear-gradient(var(--grid-line-dark-bold) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line-dark-bold) 1px, transparent 1px);
+            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+            background-position: 0 0, 0 0, 0 0, 0 0;
         }
-        body.io-black-mode .main-content.grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0) !important;
-            background-size: 22px 22px !important;
+        .main-content,
+        .grid-bg,
+        #content {
+            background-attachment: scroll;
         }
-        body.io-black-mode .sidebar-nav-inner,
-        body.io-black-mode .page-header,
-        body.io-black-mode .friendlink.card,
-        body.io-black-mode .main-footer .footer-inner,
-        body.io-black-mode .site-search-empty,
-        body.io-black-mode .footer-tools .btn,
-        body.io-black-mode .url-card .card.no-c,
-        body.io-black-mode .card,
-        body.io-black-mode .modal-dialog {
-            background: var(--dark-surface) !important;
-            border-color: var(--dark-border) !important;
-            box-shadow: var(--dark-shadow) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        body.io-black-mode .site-search-input {
-            background: var(--dark-surface-strong) !important;
-            color: #e8eef5 !important;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, .22) !important;
-        }
-        body.io-black-mode .site-search-input::placeholder {
-            color: rgba(232, 238, 245, .48) !important;
-        }
-        body.io-black-mode,
-        body.io-black-mode .text-gray,
-        body.io-black-mode .sidebar-item a,
-        body.io-black-mode .site-menu a,
-        body.io-black-mode .footer-text,
-        body.io-black-mode .url-info strong,
-        body.io-black-mode .url-info div,
-        body.io-black-mode #hitokoto a {
-            color: #dbe6f0 !important;
-        }
-        body.io-black-mode .text-muted,
-        body.io-black-mode .url-info p,
-        body.io-black-mode .site-search-tip,
-        body.io-black-mode .sidebar-menu-inner ul li ul li a {
-            color: #93a7bb !important;
+        body.io-grey-mode .content-site,
+        body.io-black-mode .content-site,
+        body.night .content-site {
+            background: transparent;
         }
         .site-search-box {
             max-width: 960px;
@@ -883,38 +830,45 @@ $(document).ready(function () {
 
 <script>
 (function () {
-    var savedMode = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    var shouldUseDark = savedMode === '1';
-
-    if (savedMode === '') {
-        shouldUseDark = new Date().getHours() >= 22 || new Date().getHours() < 6;
-        document.cookie = 'night=' + (shouldUseDark ? '1' : '0') + ';path=/';
+    if (document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
+        if (new Date().getHours() > 22 || new Date().getHours() < 6) {
+            document.body.classList.remove('io-black-mode');
+            document.body.classList.add('io-grey-mode');
+            document.cookie = "night=1;path=/";
+        } else {
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/";
+        }
+    } else {
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if (night === '0') {
+            document.body.classList.remove('night');
+        } else if (night === '1') {
+            document.body.classList.add('night');
+        }
     }
-
-    document.body.classList.remove('io-grey-mode', 'io-black-mode', 'night');
-    document.body.classList.add(shouldUseDark ? 'io-black-mode' : 'io-grey-mode');
 })();
 
-$('#search-bg').css('background-image', 'linear-gradient(135deg, rgba(102, 133, 161, .58), rgba(228, 238, 244, .28)), url(assets/images/bg-dna.jpg)');
-$('#search-bg').css('background-position', 'center');
-$('#search-bg').css('background-size', 'cover');
+$("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
 
 function switchNightMode() {
-    var isDark = document.body.classList.contains('io-black-mode');
-
-    document.body.classList.remove('io-grey-mode', 'io-black-mode', 'night');
-    document.body.classList.add(isDark ? 'io-grey-mode' : 'io-black-mode');
-    document.cookie = 'night=' + (isDark ? '0' : '1') + ';path=/';
-
-    $('.switch-dark-mode').attr('data-original-title', isDark ? '夜间模式' : '日间模式');
-    $('.mode-ico').toggleClass('icon-night', isDark).toggleClass('icon-light', !isDark);
+    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+    if (night === '0') {
+        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+        document.body.classList.remove('io-grey-mode');
+        document.body.classList.add('io-black-mode');
+        document.cookie = "night=1;path=/";
+        $(".switch-dark-mode").attr("data-original-title", "日间模式");
+        $(".mode-ico").removeClass("icon-night").addClass("icon-light");
+    } else {
+        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+        document.body.classList.remove('io-black-mode');
+        document.body.classList.add('io-grey-mode');
+        document.cookie = "night=0;path=/";
+        $(".switch-dark-mode").attr("data-original-title", "夜间模式");
+        $(".mode-ico").removeClass("icon-light").addClass("icon-night");
+    }
 }
-
-$(document).ready(function () {
-    var isDark = document.body.classList.contains('io-black-mode');
-    $('.switch-dark-mode').attr('data-original-title', isDark ? '日间模式' : '夜间模式');
-    $('.mode-ico').toggleClass('icon-light', isDark).toggleClass('icon-night', !isDark);
-});
 </script>
 
 <script>
