@@ -4,8 +4,8 @@
     <meta name="generator" content="Hugo 0.121.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#f9f9f9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#E4EEF4">
     <title>SAKURA手记 - 收藏夹</title>
     <link rel="shortcut icon" href="./assets/images/favicon.png">
     <meta name="keywords" content="在线工具网">
@@ -22,6 +22,30 @@
     <script src="./assets/js/jquery.min-3.2.1.js"></script>
 
     <style>
+        :root {
+            --page-bg: #E4EEF4;
+            --card-shadow: 0 12px 32px rgba(43, 66, 94, .08);
+            --card-shadow-hover: 0 18px 36px rgba(43, 66, 94, .12);
+            --search-shadow: 0 10px 28px rgba(43, 66, 94, .12);
+            --search-highlight: rgba(57,197,187,.45);
+            --section-gap: 6px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body.io-grey-mode,
+        body.io-black-mode {
+            background: var(--page-bg);
+        }
+        .main-content.grid-bg {
+            background-color: var(--page-bg);
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(120, 146, 178, .08) 1px, transparent 0);
+            background-size: 22px 22px;
+        }
+        .header-big.post-top.css-color {
+            margin-bottom: 24px !important;
+        }
         .site-search-box {
             max-width: 960px;
             margin: 0 auto;
@@ -33,32 +57,180 @@
         .site-search-input {
             width: 100%;
             height: 58px;
-            border: 0;
+            border: 1px solid rgba(255,255,255,.55);
             border-radius: 999px;
             padding: 0 24px;
             font-size: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+            color: #1f2d3d;
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: var(--search-shadow);
+            outline: none;
+            transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease, background .25s ease;
+        }
+        .site-search-input:focus {
+            background: rgba(255,255,255,.96);
+            border-color: rgba(57,197,187,.35);
+            box-shadow: 0 16px 36px rgba(43, 66, 94, .16);
         }
         .site-search-tip {
             margin-top: 12px;
-            color: rgba(255,255,255,.75);
+            color: rgba(255,255,255,.82);
             font-size: 14px;
             text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,.12);
         }
         .site-search-empty {
             display: none;
             padding: 18px 20px;
             margin-bottom: 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,.9);
-            color: #666;
+            border-radius: 16px;
+            background: rgba(255,255,255,.8);
+            border: 1px solid rgba(255,255,255,.5);
+            box-shadow: var(--card-shadow);
+            color: #5c6773;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         .site-search-empty.show {
             display: block;
         }
         .site-search-highlight {
-            outline: 2px solid rgba(57,197,187,.45);
+            outline: 2px solid var(--search-highlight);
             border-radius: 999px;
+        }
+        .site-section {
+            margin-bottom: var(--section-gap);
+        }
+        .url-card .card.no-c {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.48);
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--card-shadow);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+            will-change: transform;
+        }
+        .url-card .card.no-c:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(255,255,255,.75);
+        }
+        .url-card .url-body.default {
+            position: relative;
+        }
+        .url-card .url-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(228,238,244,.85);
+        }
+        .url-card .url-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .friendlink.card,
+        .sidebar-nav-inner,
+        .page-header,
+        .footer-tools .btn,
+        .main-footer .footer-inner {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .friendlink.card {
+            border: 1px solid rgba(255,255,255,.48);
+            box-shadow: var(--card-shadow);
+            border-radius: 18px;
+            background: rgba(255,255,255,.72);
+        }
+        #footer-tools .btn {
+            box-shadow: 0 10px 20px rgba(43, 66, 94, .14);
+        }
+        body.io-black-mode {
+            --page-bg: #0f141b;
+            --card-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+            --card-shadow-hover: 0 22px 44px rgba(0, 0, 0, .38);
+            --search-shadow: 0 12px 28px rgba(0,0,0,.28);
+        }
+        body.io-black-mode .main-content.grid-bg {
+            background-color: #0f141b;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0);
+        }
+        body.io-black-mode .url-card .card.no-c,
+        body.io-black-mode .friendlink.card,
+        body.io-black-mode .site-search-empty {
+            background: rgba(24, 31, 40, .72);
+            border-color: rgba(255,255,255,.08);
+        }
+        body.io-black-mode .site-search-input {
+            color: #e7edf3;
+            background: rgba(24,31,40,.85);
+            border-color: rgba(255,255,255,.08);
+        }
+        body.io-black-mode .site-search-input:focus {
+            background: rgba(24,31,40,.94);
+            border-color: rgba(57,197,187,.35);
+        }
+        body.io-black-mode .site-search-tip,
+        body.io-black-mode #runtime {
+            color: rgba(255,255,255,.8) !important;
+            text-shadow: none;
+        }
+        body.io-black-mode .url-card .url-img {
+            background: rgba(255,255,255,.06);
+        }
+        @media (max-width: 767.98px) {
+            .placeholder {
+                height: 66px !important;
+            }
+            .header-big.post-top.css-color {
+                margin-bottom: 18px !important;
+            }
+            .site-search-box {
+                padding: 18px 14px 28px;
+            }
+            .site-search-input {
+                height: 52px;
+                font-size: 16px;
+                padding: 0 18px;
+            }
+            .site-search-tip {
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            .url-card .card.no-c {
+                border-radius: 16px;
+                box-shadow: 0 8px 18px rgba(43, 66, 94, .09);
+                transition: none;
+            }
+            .url-card .card.no-c:hover {
+                transform: none;
+                box-shadow: 0 8px 18px rgba(43, 66, 94, .09);
+            }
+            .url-card .card-body {
+                padding: 14px 12px;
+            }
+            .url-card .url-img {
+                width: 38px;
+                height: 38px;
+                border-radius: 10px;
+            }
+            .content-site {
+                padding-bottom: 18px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -192,35 +364,6 @@
                                     <ul class="sub-menu"></ul>
                                 </li>
                             </ul>
-
-                            <div class="rounded-circle weather">
-                                <div id="he-plugin-simple" style="display: contents;"></div>
-                                <script>
-                                    WIDGET = {
-                                        CONFIG: {
-                                            "modules": "01234",
-                                            "background": 5,
-                                            "tmpColor": "E4C600",
-                                            "tmpSize": 14,
-                                            "cityColor": "E4C600",
-                                            "citySize": 14,
-                                            "aqiColor": "#E4C600",
-                                            "aqiSize": 14,
-                                            "weatherIconSize": 24,
-                                            "alertIconSize": 18,
-                                            "padding": "10px 10px 10px 10px",
-                                            "shadow": "1",
-                                            "language": "auto",
-                                            "borderRadius": 5,
-                                            "fixed": "false",
-                                            "vertical": "middle",
-                                            "horizontal": "left",
-                                            "key": "085791e805a24491b43b06cf58ab31e7"
-                                        }
-                                    };
-                                </script>
-                                <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
-                            </div>
                         </div>
 
                         <ul class="nav navbar-menu text-xs order-1 order-md-2">
@@ -243,11 +386,11 @@
                             </li>
 
                             <li class="nav-search ml-3 ml-md-4">
-                                <a href="javascript:" id="focus-site-search"><i class="iconfont icon-search icon-2x"></i></a>
+                                <a href="javascript:void(0)" id="focus-site-search"><i class="iconfont icon-search icon-2x"></i></a>
                             </li>
 
                             <li class="nav-item d-md-none mobile-menu ml-3 ml-md-4">
-                                <a href="javascript:" id="sidebar-switch" data-toggle="modal" data-target="#sidebar">
+                                <a href="javascript:void(0)" id="sidebar-switch" data-toggle="modal" data-target="#sidebar">
                                     <i class="iconfont icon-classification icon-2x"></i>
                                 </a>
                             </li>
@@ -505,7 +648,7 @@
                                 <div class="card-body">
                                     <div class="url-content d-flex align-items-center">
                                         <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            <img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器">
+                                            <img class="lazy" src="assets/images/logos/瞬爆修改器.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器">
                                         </div>
                                         <div class="url-info flex-fill">
                                             <div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div>
@@ -576,11 +719,11 @@
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://share.dmhy.org/" target="_blank" rel="noopener noreferrer" data-url="https://share.dmhy.org/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="动漫资源下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://share.dmhy.org/favicon.ico" data-src="https://share.dmhy.org/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="动漫花园"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫资源下载</p></div></div></div></a><a href="https://share.dmhy.org/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer" data-url="https://dongmanhuayuan.myheartsite.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="动漫花园同步站"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/花园镜像.png" onerror="this.src='assets/images/logos/default.webp'" alt="动漫花园镜像站"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园镜像站</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫花园同步站</p></div></div></div></a><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer" data-url="https://dongmanhuayuan.myheartsite.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="动漫花园同步站"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/花园镜像.png" data-src="assets/images/logos/花园镜像.png" onerror="this.src='assets/images/logos/default.webp'" alt="动漫花园镜像站"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>动漫花园镜像站</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">动漫花园同步站</p></div></div></div></a><a href="https://dongmanhuayuan.myheartsite.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://wpzy.cc/" target="_blank" rel="noopener noreferrer" data-url="https://wpzy.cc/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="分享网盘资源"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/AQ网盘资源.png" data-src="assets/images/logos/AQ网盘资源.png" onerror="this.src='assets/images/logos/default.webp'" alt="AQ网盘资源"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>AQ网盘资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a href="https://wpzy.cc/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer" data-url="http://t-rex.tzfile.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="分享网盘资源"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/团长资源.png" onerror="this.src='assets/images/logos/default.webp'" alt="团长资源"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>团长资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer" data-url="http://t-rex.tzfile.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="分享网盘资源"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/团长资源.png" data-src="assets/images/logos/团长资源.png" onerror="this.src='assets/images/logos/default.webp'" alt="团长资源"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>团长资源</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">分享网盘资源</p></div></div></div></a><a href="http://t-rex.tzfile.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://kkdm.xyz/" target="_blank" rel="noopener noreferrer" data-url="https://kkdm.xyz/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="专注日韩动漫分享"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://kkdm.xyz/favicon.ico" data-src="https://kkdm.xyz/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="快快动漫"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>快快动漫</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">专注日韩动漫分享</p></div></div></div></a><a href="https://kkdm.xyz/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
@@ -588,7 +731,7 @@
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://bbs.yiove.com/forum-4.htm" target="_blank" rel="noopener noreferrer" data-url="https://bbs.yiove.com/forum-4.htm" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="影视资源网盘分享"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/综合资源区.png" data-src="assets/images/logos/综合资源区.png" onerror="this.src='assets/images/logos/default.webp'" alt="综合资源区"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>综合资源区</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">影视资源网盘分享</p></div></div></div></a><a href="https://bbs.yiove.com/forum-4.htm" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer" data-url="https://srtku.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="字幕分享下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/字幕.png" onerror="this.src='assets/images/logos/default.webp'" alt="字幕库"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>字幕库</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕分享下载</p></div></div></div></a><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer" data-url="https://srtku.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="字幕分享下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/字幕.png" data-src="assets/images/logos/字幕.png" onerror="this.src='assets/images/logos/default.webp'" alt="字幕库"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>字幕库</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕分享下载</p></div></div></div></a><a href="https://srtku.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://assrt.net/" target="_blank" rel="noopener noreferrer" data-url="https://assrt.net/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="字幕下载"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="https://assrt.net/favicon.ico" data-src="https://assrt.net/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="伪射手网"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>伪射手网</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">字幕下载</p></div></div></div></a><a href="https://assrt.net/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
                 </div>
@@ -603,7 +746,7 @@
                     <div class="flex-fill"></div>
                 </div>
                 <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer" data-url="https://web.baimiaoapp.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="图片转文字、图片文字提取"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/白描网页.png" onerror="this.src='assets/images/logos/default.webp'" alt="白描网页"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>白描网页</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">图片转文字、图片文字提取</p></div></div></div></a><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer" data-url="https://web.baimiaoapp.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="图片转文字、图片文字提取"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/白描网页.png" data-src="assets/images/logos/白描网页.png" onerror="this.src='assets/images/logos/default.webp'" alt="白描网页"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>白描网页</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">图片转文字、图片文字提取</p></div></div></div></a><a href="https://web.baimiaoapp.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
 
                     <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://waifu2x.udp.jp/" target="_blank" rel="noopener noreferrer" data-url="http://waifu2x.udp.jp/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="waifu"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="http://waifu2x.udp.jp/favicon.ico" data-src="http://waifu2x.udp.jp/favicon.ico" onerror="this.src='assets/images/logos/default.webp'" alt="图片放大"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>图片放大</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">waifu</p></div></div></div></a><a href="http://waifu2x.udp.jp/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
                 </div>
@@ -637,7 +780,7 @@
                     <div class="flex-fill"></div>
                 </div>
                 <div class="row">
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer" data-url="http://kaboomtrainer.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="GTA5线下修改器"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/图标名.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p></div></div></div></a><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
+                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"><div class="url-body default"><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer" data-url="http://kaboomtrainer.com/" class="card no-c mb-4" data-toggle="tooltip" data-placement="bottom" data-original-title="GTA5线下修改器"><div class="card-body"><div class="url-content d-flex align-items-center"><div class="url-img mr-2 d-flex align-items-center justify-content-center"><img class="lazy" src="assets/images/logos/瞬爆修改器.png" data-src="assets/images/logos/瞬爆修改器.png" onerror="this.src='assets/images/logos/default.webp'" alt="瞬爆修改器"></div><div class="url-info flex-fill"><div class="text-sm overflowClip_1"><strong>瞬爆修改器</strong></div><p class="overflowClip_1 m-0 text-muted text-xs">GTA5线下修改器</p></div></div></div></a><a href="http://kaboomtrainer.com/" target="_blank" rel="noopener noreferrer nofollow" class="togo text-center text-muted is-views" title="直达"><i class="iconfont icon-goto"></i></a></div></div>
                 </div>
             </section>
 
@@ -669,16 +812,16 @@
 
         <footer class="main-footer footer-type-1 text-xs">
             <div id="footer-tools" class="d-flex flex-column">
-                <a href="javascript:" id="go-to-up" class="btn rounded-circle go-up m-1" rel="go-top">
+                <a href="javascript:void(0)" id="go-to-up" class="btn rounded-circle go-up m-1" rel="go-top">
                     <i class="iconfont icon-to-up"></i>
                 </a>
 
-                <a href="javascript:" id="footer-focus-search" class="btn rounded-circle m-1" rel="search">
+                <a href="javascript:void(0)" id="footer-focus-search" class="btn rounded-circle m-1" rel="search">
                     <i class="iconfont icon-search"></i>
                 </a>
 
-                <a href="javascript:" onclick="switchNightMode()" class="btn rounded-circle switch-dark-mode m-1" id="yejian"
-                    data-toggle="tooltip" data-placement="left" title="日间模式">
+                <a href="javascript:void(0)" onclick="switchNightMode()" class="btn rounded-circle switch-dark-mode m-1" id="yejian"
+                    data-toggle="tooltip" data-placement="left" title="夜间模式">
                     <i class="mode-ico iconfont icon-night"></i>
                 </a>
             </div>
@@ -731,48 +874,40 @@ var theme = {
 
 <script>
 $(document).ready(function () {
-    var siteWelcome = $('#loading');
-    siteWelcome.addClass('close');
-    setTimeout(function () {
-        siteWelcome.remove();
-    }, 600);
-});
-</script>
-
-<script>
-$(document).ready(function () {
     setTimeout(function () {
         if ($('a.smooth[href="' + window.location.hash + '"]')[0]) {
             $('a.smooth[href="' + window.location.hash + '"]').click();
         } else if (window.location.hash !== '' && $(window.location.hash).length) {
-            $("html, body").animate({
+            $('html, body').animate({
                 scrollTop: $(window.location.hash).offset().top - 90
             }, {
                 duration: 500,
-                easing: "swing"
+                easing: 'swing'
             });
         }
     }, 300);
 
     $(document).on('click', 'a.smooth', function () {
+        var href = $(this).attr('href') || '';
+
         if ($('#sidebar').hasClass('show') && !$(this).hasClass('change-href')) {
             $('#sidebar').modal('toggle');
         }
 
-        if ($(this).attr("href").substr(0, 1) === "#" && $($(this).attr("href")).length) {
-            $("html, body").animate({
-                scrollTop: $($(this).attr("href")).offset().top - 90
+        if (href.charAt(0) === '#' && $(href).length) {
+            $('html, body').animate({
+                scrollTop: $(href).offset().top - 90
             }, {
                 duration: 500,
-                easing: "swing"
+                easing: 'swing'
             });
         }
 
         if (!$(this).hasClass('change-href')) {
-            var menu = $("a" + $(this).attr("href"));
+            var menu = $('a' + href);
             if (menu.length) {
                 menu.click();
-                if (typeof toTarget === "function") {
+                if (typeof toTarget === 'function') {
                     toTarget(menu.parent().parent(), true, true);
                 }
             }
@@ -783,50 +918,43 @@ $(document).ready(function () {
 
 <script>
 (function () {
-    if (document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
-        if (new Date().getHours() > 22 || new Date().getHours() < 6) {
-            document.body.classList.remove('io-black-mode');
-            document.body.classList.add('io-grey-mode');
-            document.cookie = "night=1;path=/";
-        } else {
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/";
-        }
-    } else {
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-        if (night === '0') {
-            document.body.classList.remove('night');
-        } else if (night === '1') {
-            document.body.classList.add('night');
-        }
+    var savedMode = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+    var shouldUseDark = savedMode === '1';
+
+    if (savedMode === '') {
+        shouldUseDark = new Date().getHours() >= 22 || new Date().getHours() < 6;
+        document.cookie = 'night=' + (shouldUseDark ? '1' : '0') + ';path=/';
     }
+
+    document.body.classList.remove('io-grey-mode', 'io-black-mode', 'night');
+    document.body.classList.add(shouldUseDark ? 'io-black-mode' : 'io-grey-mode');
 })();
 
-$("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
+$('#search-bg').css('background-image', 'linear-gradient(135deg, rgba(99,132,174,.55), rgba(228,238,244,.34)), url(assets/images/bg-dna.jpg)');
+$('#search-bg').css('background-position', 'center');
+$('#search-bg').css('background-size', 'cover');
 
 function switchNightMode() {
-    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-    if (night === '0') {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
-        document.body.classList.remove('io-grey-mode');
-        document.body.classList.add('io-black-mode');
-        document.cookie = "night=1;path=/";
-        $(".switch-dark-mode").attr("data-original-title", "日间模式");
-        $(".mode-ico").removeClass("icon-night").addClass("icon-light");
-    } else {
-        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
-        document.body.classList.remove('io-black-mode');
-        document.body.classList.add('io-grey-mode');
-        document.cookie = "night=0;path=/";
-        $(".switch-dark-mode").attr("data-original-title", "夜间模式");
-        $(".mode-ico").removeClass("icon-light").addClass("icon-night");
-    }
+    var isDark = document.body.classList.contains('io-black-mode');
+
+    document.body.classList.remove('io-grey-mode', 'io-black-mode', 'night');
+    document.body.classList.add(isDark ? 'io-grey-mode' : 'io-black-mode');
+    document.cookie = 'night=' + (isDark ? '0' : '1') + ';path=/';
+
+    $('.switch-dark-mode').attr('data-original-title', isDark ? '夜间模式' : '日间模式');
+    $('.mode-ico').toggleClass('icon-night', isDark).toggleClass('icon-light', !isDark);
 }
+
+$(document).ready(function () {
+    var isDark = document.body.classList.contains('io-black-mode');
+    $('.switch-dark-mode').attr('data-original-title', isDark ? '日间模式' : '夜间模式');
+    $('.mode-ico').toggleClass('icon-light', isDark).toggleClass('icon-night', !isDark);
+});
 </script>
 
 <script>
 function updateRuntime() {
-    const startTime = new Date("2026-03-15T00:00:00+08:00");
+    const startTime = new Date('2026-03-15T00:00:00+08:00');
     const now = new Date();
     const diff = now - startTime;
 
@@ -839,7 +967,7 @@ function updateRuntime() {
         return n < 10 ? '0' + n : n;
     }
 
-    const runtime = document.getElementById("runtime");
+    const runtime = document.getElementById('runtime');
     if (runtime) {
         runtime.innerText = `⏱️ 已稳定运行 ${days}天 ${pad(hours)}时 ${pad(minutes)}分 ${pad(seconds)}秒`;
     }
@@ -849,64 +977,81 @@ updateRuntime();
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("site-card-search");
-    const content = document.getElementById("content");
-    const emptyBox = document.getElementById("site-search-empty");
-    const sections = Array.from(document.querySelectorAll(".site-section"));
-    const focusButtons = [document.getElementById("focus-site-search"), document.getElementById("footer-focus-search")];
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('site-card-search');
+    const content = document.getElementById('content');
+    const emptyBox = document.getElementById('site-search-empty');
+    const sections = Array.from(document.querySelectorAll('.site-section'));
+    const focusButtons = [document.getElementById('focus-site-search'), document.getElementById('footer-focus-search')];
+    const cards = content ? Array.from(content.querySelectorAll('.url-card')) : [];
 
     function normalizeText(text) {
-        return (text || "").toLowerCase().replace(/\s+/g, "");
+        return (text || '').toLowerCase().replace(/\s+/g, '');
     }
 
     function focusSearch() {
         if (!searchInput) return;
-        searchInput.focus();
-        searchInput.classList.add("site-search-highlight");
-        setTimeout(() => searchInput.classList.remove("site-search-highlight"), 1200);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const delay = window.innerWidth < 768 ? 260 : 80;
+
+        setTimeout(function () {
+            searchInput.focus({ preventScroll: true });
+            searchInput.classList.add('site-search-highlight');
+            setTimeout(function () {
+                searchInput.classList.remove('site-search-highlight');
+            }, 1200);
+        }, delay);
     }
 
-    focusButtons.forEach(btn => {
+    focusButtons.forEach(function (btn) {
         if (btn) {
-            btn.addEventListener("click", function (e) {
+            btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 focusSearch();
-            });
+            }, { passive: false });
         }
     });
 
     if (!searchInput || !content) return;
 
-    const cards = Array.from(content.querySelectorAll(".url-card"));
-
     function filterCards() {
         const keyword = normalizeText(searchInput.value);
         let visibleCards = 0;
 
-        cards.forEach(card => {
-            const title = card.querySelector(".url-info strong")?.innerText || "";
-            const desc = card.querySelector(".url-info p")?.innerText || "";
-            const url = card.querySelector("a.card")?.getAttribute("href") || "";
-            const fullText = normalizeText(title + " " + desc + " " + url);
+        cards.forEach(function (card) {
+            const title = card.querySelector('.url-info strong')?.innerText || '';
+            const desc = card.querySelector('.url-info p')?.innerText || '';
+            const url = card.querySelector('a.card')?.getAttribute('href') || '';
+            const fullText = normalizeText(title + ' ' + desc + ' ' + url);
 
             const matched = !keyword || fullText.includes(keyword);
-            card.style.display = matched ? "" : "none";
+            card.style.display = matched ? '' : 'none';
             if (matched) visibleCards++;
         });
 
-        sections.forEach(section => {
-            const hasVisible = Array.from(section.querySelectorAll(".url-card")).some(card => card.style.display !== "none");
-            section.style.display = hasVisible ? "" : "none";
+        sections.forEach(function (section) {
+            const hasVisible = Array.from(section.querySelectorAll('.url-card')).some(function (card) {
+                return card.style.display !== 'none';
+            });
+            section.style.display = hasVisible ? '' : 'none';
         });
 
         if (emptyBox) {
-            emptyBox.classList.toggle("show", keyword !== "" && visibleCards === 0);
+            const shouldShowEmpty = keyword !== '' && visibleCards === 0;
+            emptyBox.classList.toggle('show', shouldShowEmpty);
+            if (shouldShowEmpty) {
+                emptyBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
         }
     }
 
-    searchInput.addEventListener("input", filterCards);
+    searchInput.addEventListener('input', filterCards, { passive: true });
+
+    document.getElementById('go-to-up')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });
 </script>
 </body>
