@@ -22,53 +22,6 @@
     <script src="./assets/js/jquery.min-3.2.1.js"></script>
 
     <style>
-
-        :root {
-            --grid-line-light: rgba(71, 101, 138, 0.10);
-            --grid-line-light-bold: rgba(71, 101, 138, 0.16);
-            --grid-line-dark: rgba(164, 188, 214, 0.09);
-            --grid-line-dark-bold: rgba(164, 188, 214, 0.14);
-        }
-        body.io-grey-mode,
-        body.io-grey-mode .main-content,
-        body.io-grey-mode .grid-bg,
-        body.io-grey-mode #content {
-            background-color: #e4eef4;
-            background-image:
-                linear-gradient(var(--grid-line-light) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line-light) 1px, transparent 1px),
-                linear-gradient(var(--grid-line-light-bold) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line-light-bold) 1px, transparent 1px);
-            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
-            background-position: 0 0, 0 0, 0 0, 0 0;
-        }
-        body.io-black-mode,
-        body.io-black-mode .main-content,
-        body.io-black-mode .grid-bg,
-        body.io-black-mode #content,
-        body.night,
-        body.night .main-content,
-        body.night .grid-bg,
-        body.night #content {
-            background-color: #0f1d31;
-            background-image:
-                linear-gradient(var(--grid-line-dark) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line-dark) 1px, transparent 1px),
-                linear-gradient(var(--grid-line-dark-bold) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line-dark-bold) 1px, transparent 1px);
-            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
-            background-position: 0 0, 0 0, 0 0, 0 0;
-        }
-        .main-content,
-        .grid-bg,
-        #content {
-            background-attachment: scroll;
-        }
-        body.io-grey-mode .content-site,
-        body.io-black-mode .content-site,
-        body.night .content-site {
-            background: transparent;
-        }
         .site-search-box {
             max-width: 960px;
             margin: 0 auto;
