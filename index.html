@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#f9f9f9">
     <title>SAKURA手记 - 收藏夹</title>
-    <link rel="shortcut icon" href="./assets/images/坤哥2.png">
+    <link rel="shortcut icon" href="./assets/images/favicon.png">
     <meta name="keywords" content="在线工具网">
     <meta name="description" content="在线网址导航, 各类开发工具、绘图绘画工具、md5、在线ps、base64、在线播放器、房贷计算器等">
 
@@ -66,7 +66,20 @@
 <body class="io-grey-mode">
 <div class="page-container">
 
- 
+    <div id="sidebar" class="sticky sidebar-nav fade animate-nav" style="width: 170px;">
+        <div class="modal-dialog h-100 sidebar-nav-inner">
+            <div class="sidebar-logo border-bottom border-color">
+                <div class="logo overflow-hidden">
+                    <a href="" class="logo-expanded">
+                        <img src="./assets/images/bt8-expand-light.png" height="40" class="logo-light" alt="手记">
+                        <img src="./assets/images/bt8-expand-dark.png" height="40" class="logo-dark d-none" alt="手记">
+                    </a>
+                    <a href="" class="logo-collapsed">
+                        <img src="./assets/images/bt.png" height="40" class="logo-light" alt="手记">
+                        <img src="./assets/images/bt.png" height="40" class="logo-dark d-none" alt="手记">
+                    </a>
+                </div>
+            </div>
 
             <div class="sidebar-menu flex-fill">
                 <div class="sidebar-scroll">
@@ -789,19 +802,19 @@ $(document).ready(function () {
     }
 })();
 
-$("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
+$("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
 
 function switchNightMode() {
     var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
     if (night === '0') {
-        $("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
+        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
         document.body.classList.remove('io-grey-mode');
         document.body.classList.add('io-black-mode');
         document.cookie = "night=1;path=/";
         $(".switch-dark-mode").attr("data-original-title", "日间模式");
         $(".mode-ico").removeClass("icon-night").addClass("icon-light");
     } else {
-        $("#search-bg").css("background-image", "url(assets/images/壁纸.png)");
+        $("#search-bg").css("background-image", "url(assets/images/bg-dna.jpg)");
         document.body.classList.remove('io-black-mode');
         document.body.classList.add('io-grey-mode');
         document.cookie = "night=0;path=/";
