@@ -149,20 +149,8 @@
             border-radius: 18px;
             background: rgba(255,255,255,.72);
         }
-        #footer-tools {
-            z-index: 40;
-        }
         #footer-tools .btn {
             box-shadow: 0 10px 20px rgba(43, 66, 94, .14);
-        }
-        .page-header {
-            position: relative;
-            z-index: 30;
-            background: rgba(255,255,255,.72);
-            border-bottom: 1px solid rgba(255,255,255,.42);
-        }
-        .page-header .navbar {
-            min-height: 74px;
         }
         body.io-black-mode {
             --page-bg: #0f141b;
@@ -197,25 +185,41 @@
         body.io-black-mode .url-card .url-img {
             background: rgba(255,255,255,.06);
         }
-        body.io-black-mode .page-header {
-            background: rgba(15,20,27,.88);
-            border-bottom-color: rgba(255,255,255,.06);
-        }
         @media (max-width: 767.98px) {
-            .page-header {
-                background: rgba(255,255,255,.94);
-                -webkit-backdrop-filter: none;
-                backdrop-filter: none;
+            .big-header-banner {
+                position: sticky;
+                top: 0;
+                z-index: 1100;
+                background: rgba(228,238,244,.98);
+            }
+            body.io-black-mode .big-header-banner {
+                background: rgba(15,20,27,.98);
+            }
+            .page-header,
+            .page-header.sticky {
+                position: relative;
+                top: auto;
+                z-index: 1101;
+                background: rgba(228,238,244,.98);
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                box-shadow: 0 6px 18px rgba(43, 66, 94, .06);
+            }
+            body.io-black-mode .page-header,
+            body.io-black-mode .page-header.sticky {
+                background: rgba(15,20,27,.96);
             }
             .page-header .navbar {
                 min-height: 66px;
-                padding-top: max(0px, env(safe-area-inset-top));
+                align-items: center;
             }
             .placeholder {
-                height: 66px !important;
+                display: none !important;
             }
             .header-big.post-top.css-color {
                 margin-bottom: 18px !important;
+                position: relative;
+                z-index: 1;
             }
             .site-search-box {
                 padding: 18px 14px 28px;
@@ -249,20 +253,22 @@
             .content-site {
                 padding-bottom: 18px;
             }
-            #footer-tools {
-                right: 10px;
-                bottom: calc(env(safe-area-inset-bottom, 0px) + 88px) !important;
-            }
-            #footer-tools .btn {
-                width: 44px;
-                height: 44px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
+            .main-footer {
+                position: relative;
             }
             .main-footer .footer-inner {
-                padding-right: 84px;
-                padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+                padding-right: 92px;
+                padding-bottom: calc(96px + env(safe-area-inset-bottom));
+            }
+            #footer-tools {
+                right: 8px !important;
+                bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+                z-index: 1200;
+            }
+            #footer-tools .btn {
+                width: 50px;
+                height: 50px;
+                margin: 6px 0 !important;
             }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -1032,15 +1038,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function focusSearch() {
         if (!searchInput) return;
 
-        const searchWrap = document.getElementById('search-bg');
-        const header = document.getElementById('header');
-        const headerHeight = header ? header.offsetHeight : 0;
-        const top = searchWrap
-            ? Math.max(0, searchWrap.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8)
-            : 0;
-
-        window.scrollTo({ top: top, behavior: 'smooth' });
-        const delay = window.innerWidth < 768 ? 280 : 100;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const delay = window.innerWidth < 768 ? 260 : 80;
 
         setTimeout(function () {
             searchInput.focus({ preventScroll: true });
